@@ -1,28 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { createLogger } from 'redux-logger';
+import { Provider } from 'react-redux';
+import Map from './components/Map/Map';
+import reducers from './ducks';
+import rootSaga from './sagas';
+import createSagaMiddleware from 'redux-saga';
+import './App.css'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+const enhancers = [];
+const sagaMiddleware = createSagaMiddleware();
+const middleware = [sagaMiddleware];
+
+if (process.env.NODE_ENV === 'development') {
+  const { devToolsExtension } = window;
+
+  if (typeof devToolsExtension === 'function') {
+    enhancers.push(devToolsExtension());
   }
+
+  middleware.push(createLogger());
 }
 
-export default App;
+const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
+const store = createStore(reducers, {}, composedEnhancers);
+
+sagaMiddleware.run(rootSaga);
+
+export default () => <Provider store={store}><Map /></Provider>
