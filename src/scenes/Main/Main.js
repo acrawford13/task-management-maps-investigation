@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Map from 'components/organisms/Map/Map';
 import Sidebar from 'scenes/Sidebar/Sidebar';
+import SvgFilterDefs from 'components/atoms/SvgFilterDefs/SvgFilterDefs';
 
 const MainGrid = styled.div`
   display: grid;
@@ -13,8 +14,9 @@ const MainGrid = styled.div`
 
 const Main = () => (
   <MainGrid>
+    <SvgFilterDefs />
     <Map />
-    <Sidebar/>
+    <Sidebar />
   </MainGrid>
 );
  

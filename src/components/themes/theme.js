@@ -18,7 +18,8 @@ theme.colors = {
   // quartz: '#4A4A4A',
   // white: '#FFFFFF',
   grey: '#dbdbdb',
-  paleTomato: '#ff7277'
+  paleTomato: '#ff7277',
+  quartz: '#4A4A4A'
 };
 
 theme.palette = {

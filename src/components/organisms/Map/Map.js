@@ -129,7 +129,7 @@ class Map extends Component {
         onCenterChanged={this.onCenterChanged}
         options={mapOptions}
       >
-          {this.props.tasks.map(task => <MapMarker position={task.location} task={task} />)}
+          {this.props.tasks.map((task, index) => <MapMarker selected={index === 1} position={task.location} task={task} />)}
 
         
         {this.props.tasks[0].closest_providers[0] &&

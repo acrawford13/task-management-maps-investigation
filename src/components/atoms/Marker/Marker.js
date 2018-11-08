@@ -9,6 +9,17 @@ const SVG = styled.svg`
   width: ${props => props.size}rem;
   grid-row: 1 / span 2;
   grid-column: 1 / span 1;
+  z-index: 1;
+`;
+
+const SVGShadow = styled.svg`
+  width: calc(${props => props.size}rem + 10px);
+  z-index: 0;
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  opacity: 0.7;
+  display: ${props => !props.selected && 'none'};
 `;
 
 const MarkerShape = styled.div`
@@ -16,6 +27,7 @@ const MarkerShape = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: 5fr 1fr;
   cursor: pointer;
+  position: relative;
 
   &::before {
     content: '';
@@ -40,6 +52,7 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 `;
 
 const Time = styled.span`
@@ -50,6 +63,12 @@ const Time = styled.span`
 const Marker = ({ size, color, selected, time, className }) => {
   return (
     <MarkerShape size={size} color={color} className={className} selected={selected}>
+      <SVGShadow selected={selected} size={size} viewBox="0 0 56 67">
+        <Path
+          filter="url(#dropShadowFilter)"
+          d="M 46.00,23.37C 46.00,10.46 35.70,0.00 23.00,0.00 10.30,0.00 0.00,10.46 0.00,23.37 0.00,31.10 2.08,35.42 8.92,42.33 16.86,50.36 21.76,57.02 23.23,57.00 24.59,56.98 30.29,49.43 36.95,42.18 44.13,34.37 46.00,30.57 46.00,23.37 46.00,23.37 46.00,23.37 46.00,23.37 Z"
+        />
+      </SVGShadow>
       <SVG size={size} viewBox="0 0 46 57">
         <Path
           d="M 46.00,23.37C 46.00,10.46 35.70,0.00 23.00,0.00 10.30,0.00 0.00,10.46 0.00,23.37 0.00,31.10 2.08,35.42 8.92,42.33 16.86,50.36 21.76,57.02 23.23,57.00 24.59,56.98 30.29,49.43 36.95,42.18 44.13,34.37 46.00,30.57 46.00,23.37 46.00,23.37 46.00,23.37 46.00,23.37 Z"

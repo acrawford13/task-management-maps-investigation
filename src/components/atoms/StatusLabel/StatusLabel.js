@@ -5,7 +5,7 @@ const StatusLabel = styled.span`
   color: white;
   border-radius: 0.25rem;
   padding: 0.2rem 0.4rem;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 `;
 
 StatusLabel.defaultProps = {

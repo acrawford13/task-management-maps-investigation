@@ -24,16 +24,21 @@ const PositionedLabel = styled(StatusLabel)`
   margin-top: 0.25rem;
 `;
 
+const Text = styled.div`
+  color: ${props => props.theme.colors.quartz};
+  letter-spacing: -0.005rem;
+`;
+
 const TaskDetail = ({ start_time, end_time, name }) => {
   const start = moment(start_time).format('HH:mm');
   const end = moment(end_time).format('HH:mm')
   return (
     <Wrapper>
       <PositionedMarker time={start} />
-      <div>
+      <Text>
         <strong>{start} - {end}</strong><br/>
         <span>{name}</span>
-      </div>
+      </Text>
       <PositionedLabel>Not assigned</PositionedLabel>
     </Wrapper>
   );
