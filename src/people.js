@@ -1,5 +1,6 @@
-const tasks = [
+const providers = [
     {
+      id: 1,
       name: 'John Smith',
       location: {
         lat: -35.286519,
@@ -14,6 +15,7 @@ const tasks = [
       ]
     },
     {
+      id: 2,
       name: 'David Argyle',
       location: {
         lat: -35.257575,
@@ -23,6 +25,7 @@ const tasks = [
       tasks: [],
     },
     {
+      id: 3,
       name: 'Rose Byrne',
       location: {
         lat: -35.211355,
@@ -33,4 +36,4 @@ const tasks = [
     },
   ];
   
-  export default tasks;
+  export default providers;

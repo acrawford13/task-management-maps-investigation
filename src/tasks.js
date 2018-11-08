@@ -10,6 +10,31 @@ const tasks = [
     },
     type: 'cleaning',
     status: 'Confirmed',
+    best_provider: {
+      provider_id: 1,
+      transit_info: {
+        // all of this data can come from google maps:
+        overview_polyline: "xrkvE{dcm[b@{@l@i@t@_@JODWAk@Ke@Yo@u@gAc@[OUACK@IBMFKDQLk@l@[r@Uh@[\\a@Tc@Fc@Cg@Qu@Q_@A{DASCIA@KL[Dy@AiBBo@DoA?g@I{@Me@_@e@GU?w@GwGEu@g@{Cs@eECi@FcBB{ADi@@EKGQWMYCSH[@OGk@Km@PsC^eCJM\\ITILOJODIDIn@DvE^hBPAP@SyHs@gNkAaDY}@Ho@P[\\INIh@@p@DVVd@`@X^HZ?h@Ot@o@XuAf@uKK}@Q_@WYwDeDcDqCMIm@M_@@YFiCnAC@yAr@qCrAUP_@h@ENMAeE]c@Cm@rLm@~KmD[qAK_@tBgDhGeByAWjAo@pAiHhN[`Aa@~Bu@pJ?BSjC]bBi@lBeAbCwBdGsA`DaAzAy@dA_A|@iAz@wNfI{B|@mB`@qALeFRaENkBPyA^eAj@k@d@eAjAc@t@y@tBW`AwDxVQzAI|ABvBJbDz@vJTpE@hDMvF[|Fs@xFgAxFwA|EcC~EgBpCeElFgAjA}GxImBtCcB|C_A[k@_@qEaEeEoDgK{IqBaB}BaB}Au@}Bq@sB[mBKuA?cBHaBTyMvCUTIXI~@h@dEDz@FfA@xG?rEMzYBjRBdCZ`Cx@~DLlADvA?^?rG{Q~B[B[F@dDAzB`@hD@f@I^T|LRrMIp@_@tA_AvBs@bASRUJ{@b@a@NQTGR?RBl@dDq@`@hD~@|HF^ThBLCMBD`@d@vDRhBh@KVGj@xEKDAB@`@Fj@HzBDnALh@PxGD?FA?NB|@Bn@FtBHrCCb@?ZBh@{@n@BF@@@DBL?NmA~N_BxR",
+        arrival_time: {
+          text: "22:56",
+          time_zone: "Australia/Sydney",
+          value: "2018-10-26T11:56:00.000Z",
+        },
+        departure_time: {
+          text: "21:49",
+          time_zone: "Australia/Sydney",
+          value: "2018-10-26T10:49:05.000Z",
+        },
+        distance: {
+          text: "15.5 km",
+          value: 15461,
+        },
+        duration: {
+          text: "1 hour 7 mins",
+          value: 4015,
+        },
+      }
+    },
     closest_providers: [
       {
         "name": "Rose Byrne",
