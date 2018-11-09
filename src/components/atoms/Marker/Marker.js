@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment-timezone';
+
+import statusData from 'utils/statusData';
 
 const Path = styled.path`
   fill: ${props => props.fill};
@@ -30,8 +33,7 @@ const MarkerShape = styled.div`
   position: relative;
 
   &::before {
-    content: '';
-    display: ${props => !props.selected && 'none'};
+    content: ${props => props.selected && '""'};
     box-sizing: border-box;
     width: ${props => props.size * 1.65}rem;
     height: ${props => props.size * 1.65}rem;
@@ -60,9 +62,15 @@ const Time = styled.span`
   font-size: ${props => props.size / 4}rem;
 `;
 
-const Marker = ({ size, color, selected, time, className }) => {
+const Marker = ({ size, selected, time, status, className, onClick }) => {
   return (
-    <MarkerShape size={size} color={color} className={className} selected={selected}>
+    <MarkerShape
+      onClick={onClick}
+      size={size}
+      color={statusData[status].color}
+      className={className}
+      selected={selected}
+    >
       <SVGShadow selected={selected} size={size} viewBox="0 0 56 67">
         <Path
           filter="url(#dropShadowFilter)"
@@ -72,11 +80,11 @@ const Marker = ({ size, color, selected, time, className }) => {
       <SVG size={size} viewBox="0 0 46 57">
         <Path
           d="M 46.00,23.37C 46.00,10.46 35.70,0.00 23.00,0.00 10.30,0.00 0.00,10.46 0.00,23.37 0.00,31.10 2.08,35.42 8.92,42.33 16.86,50.36 21.76,57.02 23.23,57.00 24.59,56.98 30.29,49.43 36.95,42.18 44.13,34.37 46.00,30.57 46.00,23.37 46.00,23.37 46.00,23.37 46.00,23.37 Z"
-          fill={color}
+          fill={statusData[status].color}
         />
       </SVG>
       <Content size={size}>
-        <Time size={size}>{time}</Time>
+        <Time size={size}>{moment(time).format('HH:mm')}</Time>
       </Content>
     </MarkerShape>
   );

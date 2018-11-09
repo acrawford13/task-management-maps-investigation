@@ -1,15 +1,16 @@
 const tasks = [
   {
     id: 1,
-    label: 'Cleaning at Hannaford St.',
+    name: 'Cleaning at Hannaford St.',
     start_time: '2018-10-25T16:00:00.000Z',
     end_time: '2018-10-25T16:30:00.000Z',
     location: {
       lat: -35.239930,
       lng: 149.045936,
     },
+    assigned_provider: null,
     type: 'cleaning',
-    status: 'Confirmed',
+    status: 'not_assigned',
     best_provider: {
       provider_id: 1,
       transit_info: {
@@ -10495,7 +10496,7 @@ const tasks = [
   },
   {
     id: 2,
-    label: 'Cleaning at Wade St.',
+    name: 'Cleaning at Wade St.',
     start_time: '2018-10-25T17:00:00.000Z',
     end_time: '2018-10-25T17:30:00.000Z',
     location: {
@@ -10503,11 +10504,12 @@ const tasks = [
       lng: 149.151300,
     },
     type: 'cleaning',
-    status: 'Confirmed',
+    status: 'not_assigned',
+    assigned_provider: null,
   },
   {
     id: 3,
-    label: 'Cleaning in Manuka',
+    name: 'Cleaning in Manuka',
     start_time: '2018-10-25T18:00:00.000Z',
     end_time: '2018-10-25T18:30:00.000Z',
     location: {
@@ -10515,7 +10517,8 @@ const tasks = [
       lng: 149.143802,
     },
     type: 'cleaning',
-    status: 'Confirmed',
+    status: 'not_assigned',
+    assigned_provider: null,
   },
 ];
 

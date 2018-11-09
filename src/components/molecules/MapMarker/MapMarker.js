@@ -9,12 +9,12 @@ const getPixelPositionOffset = (width, height) => ({
   y: -(height * 0.95),
 });
 
-const MapMarker = ({ position, ...props }) => (
+const MapMarker = ({ position, onClick, ...props }) => (
   <OverlayView
     getPixelPositionOffset={getPixelPositionOffset}
     position={position}
     mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-    <Marker time={moment(props.task.start_time).format('HH:mm')} {...props} />
+    <Marker onClick={onClick} time={props.task.start_time} status={props.task.status} {...props} />
   </OverlayView>
 )
  
