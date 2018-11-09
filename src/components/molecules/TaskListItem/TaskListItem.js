@@ -22,7 +22,7 @@ const BigTime = styled.span`
 const TaskListItem = ({ name, start_time, end_time, status, onClick }) => {
   return (
     <Wrapper onClick={onClick}>
-      <BigTime>{moment(start_time).format('HH:mm')}</BigTime>
+      <BigTime>{moment.utc(start_time).format('HH:mm')}</BigTime>
       <TaskDetails name={name} start_time={start_time} end_time={end_time} status={status} />
     </Wrapper>
   );

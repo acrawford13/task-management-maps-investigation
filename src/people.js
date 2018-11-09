@@ -8,6 +8,7 @@ const providers = [
     },
     type: 'Cleaner',
     tasks: [],
+    availability: [{ start_time: '2018-11-09T09:00:00Z', end_time: '2018-11-09T17:30:00Z' }],
   },
   {
     id: 2,
@@ -18,6 +19,11 @@ const providers = [
     },
     type: 'Cleaner',
     tasks: [],
+    availability: [
+      { start_time: '2018-11-09T09:00:00Z', end_time: '2018-11-09T10:30:00Z' },
+      { start_time: '2018-11-09T11:00:00Z', end_time: '2018-11-09T14:30:00Z' },
+      { start_time: '2018-11-09T16:00:00Z', end_time: '2018-11-09T21:00:00Z' },
+    ],
   },
   {
     id: 3,
@@ -28,6 +34,7 @@ const providers = [
     },
     type: 'Cleaner',
     tasks: [],
+    availability: [{ start_time: '2018-11-09T09:00:00Z', end_time: '2018-11-09T17:30:00Z' }],
   },
 ];
 

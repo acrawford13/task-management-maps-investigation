@@ -17,7 +17,7 @@ const TaskDetails = ({ start_time, end_time, name, status }) => (
   <div>
     <Text>
       <strong>
-        {moment(start_time).format('HH:mm')} - {moment(end_time).format('HH:mm')}
+        {moment.utc(start_time).format('HH:mm')} - {moment.utc(end_time).format('HH:mm')}
       </strong>
       <br />
       <span>{name}</span>

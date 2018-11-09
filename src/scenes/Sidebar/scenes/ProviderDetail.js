@@ -14,22 +14,27 @@ const Wrapper = styled.div`
   padding-top: 1rem;
 `;
 
-const ProviderDetailsWrapper = styled(SidebarListItem)`
-  padding-top: 0.5rem;
-  grid-template-columns: 25% 1fr;
-  padding-right: 1rem;
-  cursor: pointer;
-  border-bottom: none;
-`;
-
-const ProviderPanel = ({ setFocusedTask, setSidebarView, provider, task, assignTask, unassignTask }) => {
+const ProviderPanel = ({ setFocusedTask, setSidebarView, provider, task, tasks, assignTask, unassignTask }) => {
   return (
     <Wrapper>
       {task && <SelectedTaskDetail onClick={() => setFocusedTask(task)} {...task} />}
-      <ArrowButton onClick={() => setSidebarView('task_assignment')} type="tertiary" direction="back">
-        Back to task
-      </ArrowButton>
-      <ProviderDetail task={task} provider={provider} assignTask={assignTask} unassignTask={unassignTask} />
+      {task.status === 'assigned' ? (
+        <ArrowButton onClick={() => setSidebarView('tasks')} type="tertiary" direction="back">
+          Back to tasks
+        </ArrowButton>
+      ) : (
+        <ArrowButton onClick={() => setSidebarView('task_assignment')} type="tertiary" direction="back">
+          Back to providers
+        </ArrowButton>
+      )}
+      <ProviderDetail
+        task={task}
+        tasks={tasks}
+        provider={provider}
+        assignTask={assignTask}
+        unassignTask={unassignTask}
+        setSidebarView={setSidebarView}
+      />
     </Wrapper>
   );
 };
@@ -38,6 +43,7 @@ const mapStateToProps = state => ({
   sidebar_view: state.view.get('sidebar_view'),
   provider: state.providers.get(state.view.get('viewing_provider')).toJS(),
   task: state.tasks.get(state.view.get('selected_task')).toJS(),
+  tasks: state.tasks,
 });
 
 const mapDispatchToProps = dispatch => ({

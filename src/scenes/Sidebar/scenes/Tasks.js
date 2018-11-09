@@ -16,7 +16,7 @@ const Tasks = ({ setSidebarView, selectTask, setFocusedTask, tasks }) => {
         onSelectTask={task => {
           selectTask(task.id);
           setFocusedTask(task);
-          setSidebarView('task_assignment');
+          setSidebarView(task.status === 'assigned' ? 'provider_detail' : 'task_assignment');
         }}
         tasks={tasks}
       />

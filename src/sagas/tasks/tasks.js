@@ -5,23 +5,23 @@ import moment from 'moment-timezone';
 import { findClosestProviderSuccessed, FIND_CLOSEST_PROVIDERS } from '../../ducks/tasks/tasks';
 
 export const isProviderAvailable = ({ existingTasks, newTask, buffer }) => {
-  const taskStart = moment(newTask.start_time);
+  const taskStart = moment.utc(newTask.start_time);
   console.log("taskStart:", taskStart);
   console.log("every:", existingTasks.every(
     existingTask => {
-      console.log("start time minus buffer:", moment(existingTask.start_time).subtract(buffer, 'minutes'))
-      console.log("end time plus buffer:", moment(existingTask.end_time).add(buffer, 'minutes'))
+      console.log("start time minus buffer:", moment.utc(existingTask.start_time).subtract(buffer, 'minutes'))
+      console.log("end time plus buffer:", moment.utc(existingTask.end_time).add(buffer, 'minutes'))
       return !taskStart.isBetween(
-        moment(existingTask.start_time).subtract(buffer, 'minutes'),
-        moment(existingTask.end_time).add(buffer, 'minutes')
+        moment.utc(existingTask.start_time).subtract(buffer, 'minutes'),
+        moment.utc(existingTask.end_time).add(buffer, 'minutes')
       )
     }
   ));
   return existingTasks.every(
     existingTask => {
       return !taskStart.isBetween(
-        moment(existingTask.start_time).subtract(buffer, 'minutes'),
-        moment(existingTask.end_time).add(buffer, 'minutes')
+        moment.utc(existingTask.start_time).subtract(buffer, 'minutes'),
+        moment.utc(existingTask.end_time).add(buffer, 'minutes')
       )
     }
   )
@@ -29,7 +29,7 @@ export const isProviderAvailable = ({ existingTasks, newTask, buffer }) => {
 
 export const filterProvidersByTravelTimeToTask = ({ task, providers }) => {
   return providers.filter(provider => {
-    const newTaskPlusTravel = { ...task, start_time: moment(task.start_time).clone().subtract(provider.transitInfo.routes[0].legs[0].duration.value, 'seconds')};
+    const newTaskPlusTravel = { ...task, start_time: moment.utc(task.start_time).clone().subtract(provider.transitInfo.routes[0].legs[0].duration.value, 'seconds')};
     console.log(newTaskPlusTravel);
     return isProviderAvailable({ existingTasks: provider.tasks, newTask: newTaskPlusTravel, buffer: 10 })
   })

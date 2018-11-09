@@ -10,35 +10,22 @@ import ArrowButton from 'components/molecules/ArrowButton/ArrowButton';
 import { setSidebarView, selectTask } from 'ducks/view/view';
 import { assignTask, unassignTask } from 'ducks/tasks/tasks';
 import { setFocusedTask } from 'ducks/map/map';
-import { SidebarHeading } from 'components/atoms/Typography/Typography';
+import { SidebarHeading, Text } from 'components/atoms/Typography/Typography';
 import ProviderDetail from '../components/ProviderDetail/ProviderDetail';
 
 const Wrapper = styled.div`
   padding-top: 1rem;
 `;
 
-const TaskAssignment = ({ setSidebarView, setFocusedTask, task, providers, selectTask, unassignTask }) => {
+const TaskAssignment = ({ setSidebarView, setFocusedTask, task, tasks, providers, selectTask, unassignTask }) => {
   const bestProviders =
     task.best_provider && providers.filter(provider => provider.id === task.best_provider.provider_id);
   return (
     <Wrapper>
       {task && <SelectedTaskDetail onClick={() => setFocusedTask(task)} {...task} />}
-      {task.status === 'not_assigned' ? (
-        <Fragment>
-          <SidebarHeading>Providers</SidebarHeading>
-          {bestProviders && <ProviderList title="Suggested" providers={bestProviders} />}
-          <ProviderList title="Available" providers={providers} />
-        </Fragment>
-      ) : (
-        <Fragment>
-          <span>Provider assigned:</span>
-          <ProviderDetail
-            task={task}
-            provider={providers.find(provider => provider.id === task.assigned_provider)}
-            unassignTask={unassignTask}
-          />
-        </Fragment>
-      )}
+      <SidebarHeading>Providers</SidebarHeading>
+      {bestProviders && <ProviderList title="Suggested" providers={bestProviders} />}
+      <ProviderList title="Available" providers={providers} />
       <ArrowButton
         onClick={() => {
           selectTask(null);
@@ -56,6 +43,7 @@ const TaskAssignment = ({ setSidebarView, setFocusedTask, task, providers, selec
 const mapStateToProps = state => ({
   task: state.tasks.get(state.view.get('selected_task')).toJS(),
   providers: state.providers.toList().toJS(),
+  tasks: state.tasks,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -21,10 +21,12 @@ theme.colors = {
   silver: '#bbbbbb',
   tundora: '#4d4d4d',
   bittersweet: '#ff7277',
+  transparentBittersweet: 'rgba(255, 114, 119, 0.2)',
   yellowOrange: '#ffa942',
   shamrock: '#34cf74',
   oxfordBlue: '#3a4556',
   translucentOxfordBlue: 'rgba(58, 69, 86, 0.4)',
+  offWhite: '#fafafa',
 };
 
 theme.palette = {

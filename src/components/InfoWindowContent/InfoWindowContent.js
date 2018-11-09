@@ -14,8 +14,8 @@ const InfoWindowContent = ({ task }) => {
   return (
     <Wrapper>
       <h2>{task.label}</h2>
-      <strong>{moment(task.start_time).format('LT')} - {moment(task.end_time).format('LT')}</strong><br/>
-      <span>{moment(task.start_time).format('LL')}</span>
+      <strong>{moment.utc(task.start_time).format('LT')} - {moment.utc(task.end_time).format('LT')}</strong><br/>
+      <span>{moment.utc(task.start_time).format('LL')}</span>
       <div>
         <br/>
         {task.closest_providers ? (

@@ -84,7 +84,7 @@ const Marker = ({ size, selected, time, status, className, onClick }) => {
         />
       </SVG>
       <Content size={size}>
-        <Time size={size}>{moment(time).format('HH:mm')}</Time>
+        <Time size={size}>{moment.utc(time).format('HH:mm')}</Time>
       </Content>
     </MarkerShape>
   );

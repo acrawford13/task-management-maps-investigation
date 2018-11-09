@@ -2,10 +2,10 @@ const tasks = [
   {
     id: 1,
     name: 'Cleaning at Hannaford St.',
-    start_time: '2018-10-25T16:00:00.000Z',
-    end_time: '2018-10-25T16:30:00.000Z',
+    start_time: '2018-11-09T16:00:00.000Z',
+    end_time: '2018-11-09T16:30:00.000Z',
     location: {
-      lat: -35.239930,
+      lat: -35.23993,
       lng: 149.045936,
     },
     assigned_provider: null,
@@ -10497,8 +10497,8 @@ const tasks = [
   {
     id: 2,
     name: 'Cleaning at Wade St.',
-    start_time: '2018-10-25T17:00:00.000Z',
-    end_time: '2018-10-25T17:30:00.000Z',
+    start_time: '2018-11-09T17:00:00.000Z',
+    end_time: '2018-11-09T17:30:00.000Z',
     location: {
       lat: -35.237728,
       lng: 149.151300,
@@ -10510,8 +10510,8 @@ const tasks = [
   {
     id: 3,
     name: 'Cleaning in Manuka',
-    start_time: '2018-10-25T18:00:00.000Z',
-    end_time: '2018-10-25T18:30:00.000Z',
+    start_time: '2018-11-09T18:00:00.000Z',
+    end_time: '2018-11-09T18:30:00.000Z',
     location: {
       lat: -35.317741,
       lng: 149.143802,

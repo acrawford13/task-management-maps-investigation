@@ -22,3 +22,7 @@ export const Bold = styled.span`
   font-weight: 500;
   letter-spacing: -0.003rem;
 `;
+
+export const Text = styled.span`
+  color: ${props => props.theme.palette.text};
+`;

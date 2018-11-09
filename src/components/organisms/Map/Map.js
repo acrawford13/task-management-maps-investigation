@@ -130,7 +130,7 @@ class Map extends Component {
         onCenterChanged={this.onCenterChanged}
         options={mapOptions}
       >
-        {this.props.tasks.map((task, index) => <MapMarker onClick={() => {this.props.setSidebarView('task_assignment'); this.props.selectTask(task.id); this.goToTask(task)}} selected={task.id === this.props.view.selected_task} position={task.location} task={task} />)}
+        {this.props.tasks.map((task, index) => <MapMarker onClick={() => {this.props.setSidebarView(task.status === 'assigned' ? 'provider_detail' : 'task_assignment'); this.props.selectTask(task.id); this.goToTask(task)}} selected={task.id === this.props.view.selected_task} position={task.location} task={task} />)}
       </GoogleMap>
     </Fragment>)
   }
