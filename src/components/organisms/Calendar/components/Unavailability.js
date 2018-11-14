@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import moment from 'moment-timezone';
 
 const Wrapper = styled.div`
-  grid-column: 2;
+  grid-column: 2 / -1;
   grid-row: ${props => props.rowOffset} / span ${props => props.rowSpan};
   background-color: ${props => props.theme.colors.transparentBittersweet};
   background: linear-gradient(
@@ -17,13 +17,13 @@ const Wrapper = styled.div`
     ${props => props.theme.colors.transparentBittersweet};
 `;
 
-const Unavailability = ({ calendar_start_time, start_time, end_time }) => {
+const Unavailability = ({ calendar_start_time, start_time, end_time, timeIntervals }) => {
   const start = moment.utc(start_time);
   const calendarStart = moment.utc(calendar_start_time);
   const end = moment.utc(end_time);
   const duration = end.diff(start, 'minutes');
   const offset = start.diff(calendarStart, 'minutes');
-  return <Wrapper rowSpan={duration / 30} rowOffset={offset / 30 + 1} />;
+  return <Wrapper rowSpan={duration / timeIntervals} rowOffset={offset / timeIntervals + 1} />;
 };
 
 export default Unavailability;

@@ -13,7 +13,7 @@ const Wrapper = styled(SidebarListItem)`
 `;
 
 const ArrowWrapper = styled.div`
-  padding-left: 3rem;
+  padding-left: 1rem;
   padding-right: 1rem;
   display: flex;
   align-items: center;

@@ -13,6 +13,8 @@ const Wrapper = styled.div`
   background-color: ${props => props.theme.colors.alto};
   overflow-y: auto;
   padding: 1rem;
+  grid-row: 1;
+  grid-column: 2;
   /* padding-top: 2rem; */
 `;
 

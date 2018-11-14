@@ -1,9 +1,9 @@
-import { fromJS, Map } from 'immutable';
+import { fromJS, OrderedMap } from 'immutable';
 import people from '../../people.js';
 
 import { ASSIGN_TASK, UNASSIGN_TASK } from '../tasks/tasks';
 
-const initialState = Map(people.map(value => [value.id, fromJS(value)]));
+const initialState = OrderedMap(people.map(value => [value.id, fromJS(value)]));
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {

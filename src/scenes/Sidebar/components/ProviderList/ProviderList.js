@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import ProviderListItem from 'components/molecules/ProviderListItem/ProviderListItem';
 import { SidebarSubheading } from 'components/atoms/Typography/Typography';
-import { setSidebarView, viewProviderDetails } from 'ducks/view/view';
+import { setSidebarView, selectProvider } from 'ducks/view/view';
 
-const ProviderList = ({ providers, title, setSidebarView, viewProviderDetails }) => {
+const ProviderList = ({ providers, title, setSidebarView, selectProvider }) => {
   return (
     <Fragment>
       <SidebarSubheading>{title}</SidebarSubheading>
@@ -13,7 +13,7 @@ const ProviderList = ({ providers, title, setSidebarView, viewProviderDetails })
         <ProviderListItem
           key={provider.id}
           onClick={() => {
-            viewProviderDetails(provider.id);
+            selectProvider(provider.id);
             setSidebarView('provider_detail');
           }}
           {...provider}
@@ -25,7 +25,7 @@ const ProviderList = ({ providers, title, setSidebarView, viewProviderDetails })
 
 const mapDispatchToProps = dispatch => ({
   setSidebarView: path => dispatch(setSidebarView(path)),
-  viewProviderDetails: providerID => dispatch(viewProviderDetails(providerID)),
+  selectProvider: providerID => dispatch(selectProvider(providerID)),
 });
 
 export default connect(

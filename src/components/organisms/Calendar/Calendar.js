@@ -4,6 +4,7 @@ import moment from 'moment-timezone';
 
 import Event from './components/Event';
 import Unavailability from './components/Unavailability';
+import { createUnavailability } from 'utils/calendar';
 
 const Wrapper = styled.div`
   display: grid;
@@ -12,12 +13,12 @@ const Wrapper = styled.div`
 `;
 
 const TimeLabel = styled.div`
-  border-bottom: 1px solid black;
+  border-top: 1px solid black;
   display: inline-flex;
   align-items: center;
   grid-column: 1;
   min-height: 2rem;
-  grid-row: ${props => props.index + 1} / span 2;
+  grid-row: ${props => props.index + 1} / span ${props => 60 / props.timeIntervals};
   border-right: 1px solid ${props => props.theme.colors.alto};
   justify-self: flex-end;
   padding: 0.5rem;
@@ -25,9 +26,13 @@ const TimeLabel = styled.div`
 `;
 
 const TimeContainer = styled.div`
-  border-bottom: 1px ${props => (props.index % 2 === 0 ? 'dashed rgba(0, 0, 0, 0.2)' : 'solid rgba(0, 0, 0, 0.4)')};
-  grid-column: 2;
-  min-height: 1rem;
+  /* border-bottom: 1px
+    ${props =>
+      props.index % (60 / props.timeIntervals) === 0 ? 'dashed rgba(0, 0, 0, 0.2)' : 'solid rgba(0, 0, 0, 0.4)'}; */
+  border-top: 1px
+    ${props => (props.border === 1 ? 'dashed rgba(0, 0, 0, 0.2)' : props.border === 0 && 'solid rgba(0, 0, 0, 0.4)')};
+  grid-column: 2 / -1;
+  min-height: ${props => 50 / (60 / props.timeIntervals)}px;
   grid-row: ${props => props.index + 1};
 `;
 
@@ -54,53 +59,55 @@ const createTimeslots = ({ minDateTime, maxDateTime, timeIntervals, timeFormat }
   return options;
 };
 
-const createUnavailability = ({ availability, start_time, end_time }) => {
-  const tempAvailability = [...availability];
-  if (availability.length === 0) {
-    return [{ start_time, end_time }];
-  }
-  if (moment.utc(tempAvailability[0].start_time).isAfter(moment.utc(start_time))) {
-    tempAvailability.unshift({ start_time, end_time: start_time });
-  }
-  if (moment.utc(tempAvailability[tempAvailability.length - 1].end_time).isBefore(moment.utc(end_time))) {
-    tempAvailability.push({ start_time: end_time, end_time });
-  }
-  const unavailability = tempAvailability
-    .map((available, index) => {
-      if (tempAvailability[index - 1]) {
-        return {
-          start_time: tempAvailability[index - 1].end_time,
-          end_time: available.start_time,
-        };
-      }
-    })
-    .filter(value => value);
-
-  return unavailability;
-};
-
-const Calendar = ({ start_time, end_time, events, availability }) => {
-  console.log(events);
+const Calendar = ({
+  handleEventClick,
+  start_time,
+  end_time,
+  events,
+  availability,
+  unavailability = createUnavailability({ availability, start_time, end_time }),
+  timeIntervals = 30,
+}) => {
   const options = createTimeslots({
     minDateTime: moment.utc(start_time),
     maxDateTime: moment.utc(end_time),
-    timeIntervals: 30,
+    timeIntervals,
     timeFormat: 'HH:mm',
   });
-  const unavailability = createUnavailability({ availability, start_time, end_time });
   return (
     <Wrapper>
       {unavailability.map((timeslot, index) => (
-        <Unavailability key={index} {...timeslot} calendar_start_time={start_time} calendar_end_time={end_time} />
+        <Unavailability
+          timeIntervals={timeIntervals}
+          key={index}
+          {...timeslot}
+          calendar_start_time={start_time}
+          calendar_end_time={end_time}
+        />
       ))}
       {options.map((option, index) => (
         <Fragment key={index}>
-          {index % 2 === 0 && <TimeLabel index={index}>{option.label}</TimeLabel>}
-          <TimeContainer index={index} />
+          {index % (60 / timeIntervals) === 0 && (
+            <TimeLabel timeIntervals={timeIntervals} index={index}>
+              {option.label}
+            </TimeLabel>
+          )}
+          <TimeContainer
+            border={(index % (60 / timeIntervals)) / (30 / timeIntervals)}
+            timeIntervals={timeIntervals}
+            index={index}
+          />
         </Fragment>
       ))}
       {events.map((event, index) => (
-        <Event key={index} timeFormat="HH:mm" {...event} calendar_start_time={start_time} />
+        <Event
+          key={index}
+          onClick={() => handleEventClick(event)}
+          timeFormat="HH:mm"
+          {...event}
+          timeIntervals={timeIntervals}
+          calendar_start_time={start_time}
+        />
       ))}
     </Wrapper>
   );

@@ -9,7 +9,7 @@ const TaskDetailsWrapper = styled.div`
   color: ${props => props.theme.colors.oxfordBlue};
   margin-top: 0.25rem;
   font-size: 0.9rem;
-  max-width: 10rem;
+  max-width: 8rem;
 `;
 
 const StyledAvatar = styled(Avatar)`

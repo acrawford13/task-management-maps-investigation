@@ -1,12 +1,25 @@
-import { fromJS, Map, List } from 'immutable';
+import { fromJS, List, OrderedMap } from 'immutable';
 import tasks from '../../tasks.js';
+import moment from 'moment-timezone';
 
 export const FIND_CLOSEST_PROVIDERS = 'FIND_CLOSEST_PROVIDERS';
 export const FIND_CLOSEST_PROVIDERS_SUCCESSED = 'FIND_CLOSEST_PROVIDERS_SUCCESSED';
 export const ASSIGN_TASK = 'ASSIGN_TASK';
 export const UNASSIGN_TASK = 'UNASSIGN_TASK';
 
-const initialState = Map(tasks.map(value => [value.id, fromJS(value)]));
+const taskSortByStartTime = (taskA, taskB) => {
+  const aStart = moment.utc(taskA.start_time);
+  const bStart = moment.utc(taskB.start_time);
+  if (aStart.isBefore(bStart)) {
+    return -1;
+  }
+  if (bStart.isBefore(aStart)) {
+    return 1;
+  }
+  return 0;
+};
+
+const initialState = OrderedMap(tasks.sort(taskSortByStartTime).map(value => [value.id, fromJS(value)]));
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {

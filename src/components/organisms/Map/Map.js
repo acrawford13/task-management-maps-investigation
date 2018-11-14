@@ -1,94 +1,78 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { GoogleMap, Marker as BaseMarker, withScriptjs, withGoogleMap, Polyline as BasePolyline, InfoWindow } from 'react-google-maps';
+import { GoogleMap, Marker as BaseMarker, withScriptjs, withGoogleMap, Polyline as BasePolyline, InfoWindow, OverlayView } from 'react-google-maps';
 import { compose, withProps, withState } from 'recompose';
-import GuestReadyIcon from 'assets/favicon-32x32.png';
 import mapStyles from './mapStyles';
+import { MAP } from 'react-google-maps/lib/constants';
 
 import tasks from 'tasks.js';
+import travelData from 'travelData.js';
 import people from 'people.js';
 import { findClosestProvider } from 'ducks/tasks/tasks';
-import InfoWindowContent from 'components/InfoWindowContent/InfoWindowContent';
 
 import MapMarker from 'components/molecules/MapMarker/MapMarker';
+import MapMarkerCluster from 'components/molecules/MapMarkerCluster/MapMarkerCluster';
 import { selectTask, setSidebarView } from 'ducks/view/view';
-import { setFocusedTask } from 'ducks/map/map';
+import { setFocusedTask, addPaths, clearPaths } from 'ducks/map/map';
+import { List } from 'immutable';
 
-const TaskList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-`
-
-const TaskListItem = styled.li`
-  color: #888888;
-  padding: 1rem;
-  border-bottom: 1px solid #dddddd;
-`
-
-const TaskListActions = styled.div`
-  margin-top: 0.5rem;
-`
-
-const TaskListAction = styled.span`
-  color: #2ccadd;
-  font-weight: bold;
-  font-size: 0.8rem;
-  cursor: pointer;
-  padding: 0.25rem;
-`
-
-const Wrapper = styled.div``
-
-const Modal = styled.div`
-  width: 80vw;
-  height: 80vh;
+const DurationMarker = styled.div`
   background-color: white;
-  position: absolute;
-  top: 10vh;
-  left: 10vw;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
-  padding: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.4rem;
+  color: #3a4556;
+  z-index: 999;
+  position: relative;
+  border: 1px solid #3a4556;
+  font-size: 0.9rem;
 `
 
-const ProviderModal = ({ provider, closeProviderModal }) => (
-  <Modal><div><h2>{provider.name}</h2></div><button onClick={closeProviderModal}>close</button></Modal>
-);
+const Wrapper = styled.div`
+  grid-row: 1;
+  grid-column: 1;
+`
 
-const RawTaskMarker = ({ label, isOpen, task, setIsOpen, ...props}) => (
-  <BaseMarker onMouseOver={() => setIsOpen(true)} defaultIcon={GuestReadyIcon} {...props}>
-    {isOpen && <InfoWindow onBlur={() => setIsOpen(false)} onCloseClick={() => setIsOpen(false)}>
-      <InfoWindowContent task={task} />
-    </InfoWindow>}
-  </BaseMarker>);
 
-const TaskMarker = withState('isOpen', 'setIsOpen', false)(RawTaskMarker);
+const Polyline = ({ from, to, route, type, warning }) => {
+  const decodedPolyline = window.google.maps.geometry.encoding.decodePath(route.overview_polyline);
+  const midPoint = decodedPolyline[Math.round(decodedPolyline.length / 2)];
+  var lineSymbol = {
+    path: 'M 0.5,0.3 0.5,0.1 0,-0.3 -0.5,0.1 -0.5,0.3 0,-0.1 z',
+    strokeWeight: 0,
+    // strokeColor: 'rgba(255, 255, 255, 0.5)',
+    fillColor: 'white',
+    fillOpacity: 0.65,
+  };
 
-const Polyline = ({ encodedPolyline, ...props }) =>
-  <BasePolyline {...props} path={window.google.maps.geometry.encoding.decodePath(encodedPolyline)} />;
-
-const TransitPath = ({ method, ...props }) => {
-  let strokeColor;
-  switch(method) {
-    case "WALKING":
-      strokeColor = '#ff9933';
-      break;
-    case "BUS":
-      strokeColor = '#f79931';
-      break;
-    default:
-      strokeColor = '#0066b3';
-  }
-  return <Polyline options={{strokeColor}} {...props} />
+  const icons = type && [{icon: lineSymbol, offset: '0', repeat: '25px'}];
+  return (
+    <Fragment>
+      <BasePolyline
+        options={{
+          icons,
+          strokeWeight: 10,
+          strokeOpacity: type ? 1 : 0.2,
+          strokeColor: warning ? "red" : "#2ccadd"}} path={decodedPolyline} />
+    </Fragment>
+  );
 }
 
 const mapOptions = {
   styles: mapStyles
 }
 
+const SimpleCluster = styled.div`
+  border: 1px solid orange;
+`;
+
 class Map extends Component {
+  componentDidMount() {
+    this.mapInstance = this.ref.map.context[MAP];
+    const transitLayer = new window.google.maps.TransitLayer();
+    transitLayer.setMap(this.mapInstance);
+  }
+
   componentDidUpdate() {
     if(this.props.map.focused_task ){
       this.ref.map.panTo(this.props.map.focused_task.location);
@@ -120,33 +104,66 @@ class Map extends Component {
     this.props.setFocusedTask(null);
   }
 
+  getPixelPositionOffset = (width, height) => ({
+    x: -(width / 2),
+    y: -(height * 0.95),
+  });
+
+  
+
+
   render() {
+    console.log(this.props.tasks);
     return (
     <Fragment>
       <GoogleMap
         ref={this.setRef}
-        defaultZoom={14}
-        defaultCenter={{ lat: -35.294, lng: 149.126 }}
+        defaultZoom={13}
+        defaultCenter={{ lat: 51.508520, lng: -0.116787 }}
         onCenterChanged={this.onCenterChanged}
         options={mapOptions}
       >
-        {this.props.tasks.map((task, index) => <MapMarker onClick={() => {this.props.setSidebarView(task.status === 'assigned' ? 'provider_detail' : 'task_assignment'); this.props.selectTask(task.id); this.goToTask(task)}} selected={task.id === this.props.view.selected_task} position={task.location} task={task} />)}
+      
+      
+        {this.props.tasks.toList().groupBy(task => task.get('location')).toList().toJS().map(locationGroup => (
+          <MapMarkerCluster tasks={locationGroup} />
+          // {locationGroup.map(task => (<MapMarker
+          //   key={task.id}
+          //   onClick={() => {
+          //     console.log(task);
+          //     this.props.setSidebarView(task.status === 'assigned' ? 'provider_detail' : 'task_assignment');
+          //     this.props.selectTask(task);
+          //     this.goToTask(task)}}
+          //   fade={
+          //     !!this.props.view.selected_task &&
+          //     task.id !== this.props.view.selected_task &&
+          //     !this.props.providers.getIn([this.props.view.selected_provider, 'tasks'], List([])).contains(task.id)}
+          //   selected={task.id === this.props.view.selected_task} 
+          //   position={task.location}
+          //   task={task}
+          //   paths={this.props.map.paths.filter(path => path.from.id === task.id || path.to.id === task.id)}
+          // />))}
+        ))}
+        {this.props.map.paths.map(step => <Polyline zoom={this.ref.map.getZoom()} {...step} />)}
       </GoogleMap>
     </Fragment>)
   }
 }
 
 const mapStateToProps = state => ({
-  tasks: state.tasks.toList().toJS(),
+  tasks: state.tasks,
+  providers: state.providers,
   view: state.view.toJS(),
   map: state.map.toJS(),
 });
 
 const mapDispatchToProps = dispatch => ({
   findClosestProvider: props => dispatch(findClosestProvider(props)),
-  selectTask: taskID => dispatch(selectTask(taskID)),
+  selectTask: task => dispatch(selectTask(task)),
   setFocusedTask: task => dispatch(setFocusedTask(task)),
   setSidebarView: path => dispatch(setSidebarView(path)),
+  addPaths: paths => dispatch(addPaths(paths)),
+  clearPaths: () => dispatch(clearPaths()),
 })
 
 export default compose(

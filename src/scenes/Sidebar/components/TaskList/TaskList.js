@@ -1,14 +1,26 @@
 import React, { Fragment } from 'react';
 
-import { SidebarHeading } from 'components/atoms/Typography/Typography';
+import { SidebarHeading, SidebarSubheading } from 'components/atoms/Typography/Typography';
 import TaskListItem from 'components/molecules/TaskListItem/TaskListItem';
+import { List } from 'immutable';
+
+import statusData from 'utils/statusData';
 
 const TaskList = ({ tasks, openTask, onSelectTask }) => {
+  const groupedTasks = List(tasks)
+    .groupBy(task => task.status)
+    .sort((a, b) => statusData[a.first().status].taskListOrder - statusData[b.first().status].taskListOrder)
+    .toJS();
   return (
     <Fragment>
       <SidebarHeading>Tasks</SidebarHeading>
-      {tasks.map(task => (
-        <TaskListItem onClick={() => onSelectTask(task)} key={task.id} {...task} />
+      {Object.keys(groupedTasks).map(category => (
+        <Fragment key={category}>
+          <SidebarSubheading>{statusData[category].label}</SidebarSubheading>
+          {groupedTasks[category].map(task => (
+            <TaskListItem onClick={() => onSelectTask(task)} key={task.id} {...task} />
+          ))}
+        </Fragment>
       ))}
     </Fragment>
   );

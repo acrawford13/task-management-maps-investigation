@@ -1,41 +1,65 @@
-import { Map } from 'immutable';
+import { Map, List } from 'immutable';
 
-export const VIEW_PROVIDER_DETAILS = 'VIEW_PROVIDER_DETAILS';
-export const HIDE_PROVIDER_DETAILS = 'HIDE_PROVIDER_DETAILS';
+export const SELECT_PROVIDER = 'SELECT_PROVIDER';
 export const SET_SIDEBAR_VIEW = 'SET_SIDEBAR_VIEW';
 export const SELECT_TASK = 'SELECT_TASK';
+export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
+export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
+export const CLEAR_NOTIFICATIONS = 'CLEAR_NOTIFICATIONS';
 
 const initialState = Map({
   sidebar_view: 'tasks',
   selected_task: null,
-  viewing_provider: null,
+  selected_provider: null,
+  notifications: List([]),
 });
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
+    case ADD_NOTIFICATION:
+      return state.update('notifications', notifications => notifications.push(action.payload.notification));
+    case REMOVE_NOTIFICATION:
+      return state.update('notifications', notifications => notifications.splice(action.payload.notificationId, 1));
+    case CLEAR_NOTIFICATIONS:
+      return state.set('notifications', List([]));
     case SET_SIDEBAR_VIEW:
-      return state.setIn(['sidebar_view'], action.payload.view);
+      return state.setIn(['sidebar_view'], action.payload.view).set('notifications', List([]));
     case SELECT_TASK:
-      return state.setIn(['selected_task'], action.payload.taskID);
-    case VIEW_PROVIDER_DETAILS:
-      return state.setIn(['viewing_provider'], action.payload.providerID);
-    case HIDE_PROVIDER_DETAILS:
-      return state.setIn(['viewing_provider'], null);
+      return state
+        .set('notifications', List([]))
+        .setIn(['selected_task'], action.payload.task ? action.payload.task.id : null)
+        .setIn(['selected_provider'], action.payload.task ? action.payload.task.assigned_provider : null);
+    case SELECT_PROVIDER:
+      return state.setIn(['selected_provider'], action.payload.providerID);
     default:
       return state;
   }
 }
 
-export function viewProviderDetails(providerID) {
+export function selectProvider(providerID) {
   return {
-    type: VIEW_PROVIDER_DETAILS,
+    type: SELECT_PROVIDER,
     payload: { providerID },
   };
 }
 
-export function hideProviderDetails() {
+export function addNotification(notification) {
   return {
-    type: HIDE_PROVIDER_DETAILS,
+    type: ADD_NOTIFICATION,
+    payload: { notification },
+  };
+}
+
+export function removeNotification(notificationId) {
+  return {
+    type: REMOVE_NOTIFICATION,
+    payload: { notificationId },
+  };
+}
+
+export function clearNotifications() {
+  return {
+    type: CLEAR_NOTIFICATIONS,
   };
 }
 
@@ -46,9 +70,9 @@ export function setSidebarView(view) {
   };
 }
 
-export function selectTask(taskID) {
+export function selectTask(task) {
   return {
     type: SELECT_TASK,
-    payload: { taskID },
+    payload: { task },
   };
 }

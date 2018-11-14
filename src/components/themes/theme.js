@@ -27,6 +27,10 @@ theme.colors = {
   oxfordBlue: '#3a4556',
   translucentOxfordBlue: 'rgba(58, 69, 86, 0.4)',
   offWhite: '#fafafa',
+  flamePea: '#DD5044',
+  desaturatedFlamePea: '#ff9d94',
+  webOrange: '#ffa500',
+  desaturatedWebOrange: '#f9d490',
 };
 
 theme.palette = {

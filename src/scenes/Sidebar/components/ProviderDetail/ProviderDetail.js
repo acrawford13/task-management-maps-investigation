@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import SidebarListItem from 'components/atoms/SidebarListItem/SidebarListItem';
@@ -6,7 +6,6 @@ import ProviderDetails from 'components/atoms/ProviderDetails/ProviderDetails';
 import Button from 'components/atoms/Button/Button';
 import { Text } from 'components/atoms/Typography/Typography';
 import Calendar from 'components/organisms/Calendar/Calendar';
-import ArrowButton from 'components/molecules/ArrowButton/ArrowButton';
 
 const Wrapper = styled.div`
   padding-top: 1rem;
@@ -20,7 +19,7 @@ const ProviderDetailsWrapper = styled(SidebarListItem)`
   border-bottom: none;
 `;
 
-const ProviderDetail = ({ provider, task, tasks, assignTask, unassignTask, setSidebarView }) => {
+const ProviderDetail = ({ provider, task, tasks, assignTask, unassignTask, selectTask, setSidebarView }) => {
   // const taskIsUnassigned = provider.tasks.indexOf(task.id) === -1;
   const taskEvents = [...provider.tasks.map(id => tasks.get(id).toJS())];
   if (task.status === 'not_assigned') {
@@ -45,8 +44,11 @@ const ProviderDetail = ({ provider, task, tasks, assignTask, unassignTask, setSi
       <Calendar
         events={taskEvents}
         availability={provider.availability}
-        start_time="2018-11-09T07:00:00Z"
-        end_time="2018-11-10T00:00:00Z"
+        unavailability={provider.unavailability}
+        start_time="2018-11-12T07:00:00Z"
+        end_time="2018-11-13T00:00:00Z"
+        handleEventClick={selectTask}
+        timeIntervals={5}
       />
     </Wrapper>
   );
