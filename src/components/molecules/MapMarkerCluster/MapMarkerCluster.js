@@ -10,12 +10,13 @@ import DurationMarker from 'components/atoms/DurationMarker/DurationMarker';
 
 const Wrapper = styled.div`
   position: relative;
+  transition: transform 0.5s;
 
   ${props => props.animate && `
   &:hover {
-    ${Badge} {
+    transform: rotate(${-22.5 * (props.markers / 2)}deg);
+    ${Dot} {
       opacity: 0;
-      transform: rotate(45deg) translate(-50%, calc(-50% - 25px));
     }
     ${MapMarkerWrapper}:nth-of-type(1) {
       transform: rotate(0) translate(0, -25px);
@@ -62,13 +63,37 @@ const MessagesWrapper = styled.div`
   pointer-events: none;
 `;
 
-const Indicator = styled.span`
-  height: 0.5rem;
-  width: 0.5rem;
+const Dot = styled.span`
+  height: 0.6rem;
+  width: 0.6rem;
   border-radius: 50%;
   background-color: ${props => props.statusColor};
-
+  display: inline-block;
+  transition: opacity 0.5s;
 `
+
+const DotWrapper = styled.span`
+  height: 70%;
+  width: 0;
+  display: inline-block;
+  transform-origin: bottom center;
+  bottom: 50%;
+  left: 50%;
+  position: absolute;
+  &:nth-of-type(1) {
+    transform: rotate(-45deg);
+  }
+  &:nth-of-type(2) {
+    transform: rotate(-30deg);
+  }
+  &:nth-of-type(3) {
+    transform: rotate(-15deg);
+  }
+`
+
+const Indicator = ({ statusColor }) => {
+  return <DotWrapper><Dot statusColor={statusColor}/></DotWrapper>;
+}
 
 class MapMarkerCluster extends Component {
   componentDidUpdate() {
@@ -94,9 +119,9 @@ class MapMarkerCluster extends Component {
         position={this.props.markers[0].task.location}
         mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
         options={{zIndex: -1}}>
-        <Wrapper animate={this.props.markers.length > 1}>
-          <MarkerWrapper>
-          {this.props.markers.map(marker => <Indicator statusColor={statusData[marker.task.status]['color']} />)}
+        <Wrapper markers={this.props.markers.length} animate={this.props.markers.length > 1}>
+          <MarkerWrapper markers={this.props.markers.length}>
+          {this.props.markers.length > 1 && this.props.markers.map(marker => <Indicator statusColor={statusData[marker.task.status]['color']} />)}
           {this.props.markers.map(marker => <MapMarker
               onClick={() => this.props.onMarkerClick(marker.task)}
               position={marker.task.location}
