@@ -13,7 +13,6 @@ class Polyline extends Component {
   });
 
   render () {
-    console.log(this.props);
     return (
       // <OverlayView
       //   style={{zIndex: 999, position: 'relative'}}

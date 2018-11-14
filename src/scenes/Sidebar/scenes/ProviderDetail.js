@@ -44,7 +44,6 @@ class ProviderPanel extends Component {
           const from = displayTasks[index - 1]
           const to = displayTasks[index];
           const route = travelData[from.id][to.id];
-          console.log(from.id, to.id);
           paths.push({
             route,
             from,

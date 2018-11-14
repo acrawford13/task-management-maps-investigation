@@ -39,11 +39,11 @@ class MapMarker extends Component {
   });
 
   shouldComponentUpdate = nextProps => {
+    return true;
     return (((this.props.selected || this.props.selected !== nextProps.selected) && this.props.paths !== nextProps.paths) || this.props.selected !== nextProps.selected || this.props.fade !== nextProps.fade || this.props.task.status !== nextProps.task.status);
   }
 
   render () {
-    console.log(this.props.paths);
     return (
       // <OverlayView
       //   getPixelPositionOffset={this.getPixelPositionOffset}

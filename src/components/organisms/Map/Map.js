@@ -104,6 +104,13 @@ class Map extends Component {
     this.props.setFocusedTask(null);
   }
 
+  markerIsSelected = task => task.id === this.props.view.selected_task;
+  markerIsFaded = task => !!this.props.view.selected_task &&
+    task.id !== this.props.view.selected_task &&
+    !this.props.providers.getIn([this.props.view.selected_provider, 'tasks'], List([])).contains(task.id);
+
+  getMarkerPaths = task => this.props.map.paths.filter(path => path.from.id === task.id || path.to.id === task.id)
+
   getPixelPositionOffset = (width, height) => ({
     x: -(width / 2),
     y: -(height * 0.95),
@@ -113,7 +120,6 @@ class Map extends Component {
 
 
   render() {
-    console.log(this.props.tasks);
     return (
     <Fragment>
       <GoogleMap
@@ -126,14 +132,33 @@ class Map extends Component {
       
       
         {this.props.tasks.toList().groupBy(task => task.get('location')).toList().toJS().map(locationGroup => (
-          <MapMarkerCluster tasks={locationGroup} />
+          <MapMarkerCluster
+            markers={locationGroup.map(task => ({
+              task,
+              selected: this.markerIsSelected(task),
+              fade: this.markerIsFaded(task),
+              paths: this.getMarkerPaths(task),
+            }))}
+            onMarkerClick={
+              (task) => {
+                this.props.setSidebarView(task.status === 'assigned' ? 'provider_detail' : 'task_assignment');
+                this.props.selectTask(task);
+                this.goToTask(task)
+              }
+            }
+            // isSelected={(task) => this.markerIsSelected(task)}
+            // isFaded={(task) => this.markerIsFaded(task)}
+            // getPaths={(task) => this.getMarkerPaths(task)}
+            // selectedTask={this.props.view.selected_task}
+            // selectedProvider={this.props.view.selected_provider}
+          />
           // {locationGroup.map(task => (<MapMarker
           //   key={task.id}
-          //   onClick={() => {
-          //     console.log(task);
-          //     this.props.setSidebarView(task.status === 'assigned' ? 'provider_detail' : 'task_assignment');
-          //     this.props.selectTask(task);
-          //     this.goToTask(task)}}
+            // onClick={() => {
+            //   console.log(task);
+            //   this.props.setSidebarView(task.status === 'assigned' ? 'provider_detail' : 'task_assignment');
+            //   this.props.selectTask(task);
+            //   this.goToTask(task)}}
           //   fade={
           //     !!this.props.view.selected_task &&
           //     task.id !== this.props.view.selected_task &&

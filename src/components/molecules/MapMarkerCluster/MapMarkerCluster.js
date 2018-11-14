@@ -1,7 +1,9 @@
 import React, { Fragment, Component } from 'react';
 import styled from 'styled-components';
 import { OverlayView } from 'react-google-maps';
+import { List } from 'immutable';
 
+import statusData from 'utils/statusData';
 import Marker from 'components/atoms/Marker/Marker';
 import MapMarker, { Wrapper as MapMarkerWrapper } from 'components/molecules/MapMarker/MapMarker';
 import DurationMarker from 'components/atoms/DurationMarker/DurationMarker';
@@ -47,7 +49,8 @@ const Badge = styled.span`
   position: absolute;
   font-weight: bold;
   transform: translate(-50%, -50%);
-  transition: all 0.5s;
+  transition: transform 0.5s, opacity 0.25s;
+  z-index: 5;
 `
 
 const MessagesWrapper = styled.div`
@@ -59,8 +62,24 @@ const MessagesWrapper = styled.div`
   pointer-events: none;
 `;
 
+const Indicator = styled.span`
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 50%;
+  background-color: ${props => props.statusColor};
+
+`
+
 class MapMarkerCluster extends Component {
   componentDidUpdate() {
+  }
+
+  shouldComponentUpdate = nextProps => {
+    const nextMarkers = List(nextProps.markers);
+    const prevMarkers = List(this.props.markers);
+    return !nextMarkers.equals(prevMarkers);
+
+    // return this.props.selectedTask !== nextProps.selectedTask
   }
 
   getPixelPositionOffset = (width, height) => ({
@@ -68,23 +87,21 @@ class MapMarkerCluster extends Component {
     y: 0,
   });
 
-  shouldComponentUpdate = nextProps => {
-    return (((this.props.selected || this.props.selected !== nextProps.selected) && this.props.paths !== nextProps.paths) || this.props.selected !== nextProps.selected || this.props.fade !== nextProps.fade || this.props.task.status !== nextProps.task.status);
-  }
-
   render () {
-    console.log(this.props.tasks);
     return (
       <OverlayView
         getPixelPositionOffset={this.getPixelPositionOffset}
-        position={this.props.tasks[0].location}
+        position={this.props.markers[0].task.location}
         mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
         options={{zIndex: -1}}>
-        <Wrapper animate={this.props.tasks.length > 1}>
+        <Wrapper animate={this.props.markers.length > 1}>
           <MarkerWrapper>
-          {this.props.tasks.length > 1 && <Badge>{this.props.tasks.length}</Badge>}
-          {this.props.tasks.map(task =>
-            <MapMarker task={task} position={task.location} />
+          {this.props.markers.map(marker => <Indicator statusColor={statusData[marker.task.status]['color']} />)}
+          {this.props.markers.map(marker => <MapMarker
+              onClick={() => this.props.onMarkerClick(marker.task)}
+              position={marker.task.location}
+              {...marker}
+            />
           )}
           </MarkerWrapper>
         </Wrapper>
