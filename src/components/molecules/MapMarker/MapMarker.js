@@ -27,6 +27,7 @@ const MessagesWrapper = styled.div`
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  position: absolute;
 `;
 
 class MapMarker extends Component {
@@ -52,12 +53,12 @@ class MapMarker extends Component {
       //   options={{zIndex: -1}}>
         <Wrapper>
           <Marker options={{zIndex: 0}} onClick={this.props.onClick} time={this.props.task.start_time} status={this.props.task.status} {...this.props} />
-          {this.props.selected && <MessagesWrapper>
+          {/* {this.props.selected && <MessagesWrapper>
           {this.props.paths.map(path => {
             if(path.to.id === this.props.task.id) return <DurationMarker warning={path.warning}>{path.route.duration.text} from previous task</DurationMarker>;
             if(path.from.id === this.props.task.id) return <DurationMarker warning={path.warning}>{path.route.duration.text} to next task</DurationMarker>;
           })}
-          </MessagesWrapper>}
+          </MessagesWrapper>} */}
         </Wrapper>
       // </OverlayView>
     );

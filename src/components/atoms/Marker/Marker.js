@@ -4,8 +4,10 @@ import moment from 'moment-timezone';
 
 import statusData from 'utils/statusData';
 
-const Path = styled.path`
+export const MarkerPath = styled.path`
   fill: ${props => props.fill};
+  opacity: ${props => props.fade ? 0.6 : 1};
+  transition: opacity 0.4s;
 `;
 
 const SVG = styled.svg`
@@ -80,15 +82,22 @@ const Marker = ({ size, selected, time, status, className, onClick, fade }) => {
       fade={fade}
     >
       <SVGShadow selected={selected} size={size} viewBox="0 0 56 67">
-        <Path
+        <path
           filter="url(#dropShadowFilter)"
           d="M 46.00,23.37C 46.00,10.46 35.70,0.00 23.00,0.00 10.30,0.00 0.00,10.46 0.00,23.37 0.00,31.10 2.08,35.42 8.92,42.33 16.86,50.36 21.76,57.02 23.23,57.00 24.59,56.98 30.29,49.43 36.95,42.18 44.13,34.37 46.00,30.57 46.00,23.37 46.00,23.37 46.00,23.37 46.00,23.37 Z"
         />
       </SVGShadow>
+      {/* <SVG size={size} viewBox="0 0 46 57">
+      </SVG> */}
       <SVG size={size} viewBox="0 0 46 57">
-        <Path
+        <path
           d="M 46.00,23.37C 46.00,10.46 35.70,0.00 23.00,0.00 10.30,0.00 0.00,10.46 0.00,23.37 0.00,31.10 2.08,35.42 8.92,42.33 16.86,50.36 21.76,57.02 23.23,57.00 24.59,56.98 30.29,49.43 36.95,42.18 44.13,34.37 46.00,30.57 46.00,23.37 46.00,23.37 46.00,23.37 46.00,23.37 Z"
-          fill={statusData[status][fade ? 'fadeColor' : 'color']}
+          fill="white"
+        />
+        <MarkerPath
+          fade={fade}
+          d="M 46.00,23.37C 46.00,10.46 35.70,0.00 23.00,0.00 10.30,0.00 0.00,10.46 0.00,23.37 0.00,31.10 2.08,35.42 8.92,42.33 16.86,50.36 21.76,57.02 23.23,57.00 24.59,56.98 30.29,49.43 36.95,42.18 44.13,34.37 46.00,30.57 46.00,23.37 46.00,23.37 46.00,23.37 46.00,23.37 Z"
+          fill={statusData[status]['color']}
         />
       </SVG>
       <Content size={size}>

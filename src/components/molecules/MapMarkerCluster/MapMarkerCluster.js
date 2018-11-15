@@ -4,17 +4,19 @@ import { OverlayView } from 'react-google-maps';
 import { List } from 'immutable';
 
 import statusData from 'utils/statusData';
-import Marker from 'components/atoms/Marker/Marker';
+import { MarkerPath } from 'components/atoms/Marker/Marker';
 import MapMarker, { Wrapper as MapMarkerWrapper } from 'components/molecules/MapMarker/MapMarker';
 import DurationMarker from 'components/atoms/DurationMarker/DurationMarker';
 
 const Wrapper = styled.div`
   position: relative;
   transition: transform 0.5s;
+  transform-origin: bottom center;
 
   ${props => props.animate && `
   &:hover {
-    transform: rotate(${-22.5 * (props.markers / 2)}deg);
+    z-index: 5;
+    transform: rotate(${-22.5 * (props.markers - 1)}deg);
     ${Dot} {
       opacity: 0;
     }
@@ -32,10 +34,16 @@ const Wrapper = styled.div`
 
 const MarkerWrapper = styled.div`
   transform: translate(-50%, 0);
-  position: absolute;
+  position: relative;
   bottom: 0;
   left: 50%;
   display: grid;
+  text-align: center;
+  &:hover {
+    ${MarkerPath} {
+      opacity: 1;
+    }
+  }
 `
 
 const Badge = styled.span`
@@ -67,17 +75,17 @@ const Dot = styled.span`
   height: 0.6rem;
   width: 0.6rem;
   border-radius: 50%;
-  background-color: ${props => props.statusColor};
+  background-color: ${props => props.fade ? props.statusColor.fadeColor : props.statusColor.color};
   display: inline-block;
   transition: opacity 0.5s;
 `
 
 const DotWrapper = styled.span`
-  height: 70%;
+  height: 60%;
   width: 0;
   display: inline-block;
   transform-origin: bottom center;
-  bottom: 50%;
+  bottom: 60%;
   left: 50%;
   position: absolute;
   &:nth-of-type(1) {
@@ -91,25 +99,31 @@ const DotWrapper = styled.span`
   }
 `
 
-const Indicator = ({ statusColor }) => {
-  return <DotWrapper><Dot statusColor={statusColor}/></DotWrapper>;
+const Indicator = ({ statusColor, fade }) => {
+  return <DotWrapper><Dot fade={fade} statusColor={statusColor}/></DotWrapper>;
 }
 
 class MapMarkerCluster extends Component {
   componentDidUpdate() {
+    console.log('updated')
   }
 
   shouldComponentUpdate = nextProps => {
     const nextMarkers = List(nextProps.markers);
     const prevMarkers = List(this.props.markers);
-    return !nextMarkers.equals(prevMarkers);
+    const compare = this.props.markers.reduce((acc, marker) => acc + marker.selected + marker.task.status + marker.fade + marker.paths.length, '');
+    const comparing = nextProps.markers.reduce((acc, marker) => acc + marker.selected + marker.task.status + marker.fade + marker.paths.length, '');
+    // return !nextMarkers.equals(prevMarkers);
+    console.log(compare == comparing);
+    console.log(comparing);
+    return compare !== comparing;
 
     // return this.props.selectedTask !== nextProps.selectedTask
   }
 
   getPixelPositionOffset = (width, height) => ({
     x: -(width / 2),
-    y: 0,
+    y: -64,
   });
 
   render () {
@@ -119,9 +133,10 @@ class MapMarkerCluster extends Component {
         position={this.props.markers[0].task.location}
         mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
         options={{zIndex: -1}}>
+        <Fragment>
         <Wrapper markers={this.props.markers.length} animate={this.props.markers.length > 1}>
           <MarkerWrapper markers={this.props.markers.length}>
-          {this.props.markers.length > 1 && this.props.markers.map(marker => <Indicator statusColor={statusData[marker.task.status]['color']} />)}
+          {this.props.markers.length > 1 && this.props.markers.map(marker => <Indicator fade={marker.fade} statusColor={statusData[marker.task.status]} />)}
           {this.props.markers.map(marker => <MapMarker
               onClick={() => this.props.onMarkerClick(marker.task)}
               position={marker.task.location}
@@ -130,6 +145,13 @@ class MapMarkerCluster extends Component {
           )}
           </MarkerWrapper>
         </Wrapper>
+          {this.props.markers.find(marker => marker.selected) && <MessagesWrapper>
+          {this.props.markers.find(marker => marker.selected).paths.map(path => {
+            if(path.to.id === this.props.markers.find(marker => marker.selected).task.id) return <DurationMarker warning={path.warning}>{path.route.duration.text} from previous task</DurationMarker>;
+            if(path.from.id === this.props.markers.find(marker => marker.selected).task.id) return <DurationMarker warning={path.warning}>{path.route.duration.text} to next task</DurationMarker>;
+          })}
+          </MessagesWrapper>}
+        </Fragment>
       </OverlayView>
     );
   }
