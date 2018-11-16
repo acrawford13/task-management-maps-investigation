@@ -81,7 +81,7 @@ class Map extends Component {
   }
 
   onCenterChanged = () => {
-    this.props.setFocusedTask(null);
+    // this.props.setFocusedTask(null);
   }
 
   markerIsSelected = task => task.id === this.props.view.selected_task || !!(this.props.map.focused_task && task.id === this.props.map.focused_task.id);

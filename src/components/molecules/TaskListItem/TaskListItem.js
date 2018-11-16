@@ -14,11 +14,17 @@ const Wrapper = styled(SidebarListItem)`
   user-select: none;
 `;
 
+const MapPreviewIcon = styled.i`
+  color: grey;
+  margin-bottom: 2px;
+`
+
 const BigTime = styled.span`
   color: ${props => props.theme.palette.text};
   font-size: 1.25rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 const TaskListItem = ({ name, start_time, end_time, status, onClick, onMouseEnter, onMouseLeave }) => {
@@ -26,7 +32,7 @@ const TaskListItem = ({ name, start_time, end_time, status, onClick, onMouseEnte
     <Wrapper onClick={onClick}>
       <BigTime>
         {moment.utc(start_time).format('HH:mm')}
-        {/* <i onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter} className="far fa-eye" /> */}
+        <MapPreviewIcon onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter} className="fas fa-map-marker-alt" />
       </BigTime>
 
       <TaskDetails name={name} start_time={start_time} end_time={end_time} status={status} />

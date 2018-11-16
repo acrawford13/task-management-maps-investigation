@@ -1,182 +1,219 @@
 export default [
   {
-    "id": 1,
-    "name": "Benjen Stark",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 7,
+    name: 'Aemon Targaryen',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T11:00:00Z',
+        end_time: '2018-11-12T17:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T20:00:00Z',
+        end_time: '2018-11-12T23:30:00Z',
+      },
+    ],
   },
   {
-    "id": 6,
-    "name": "Bran Stark",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 13,
+    name: 'Benjen Stark',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T11:00:00Z',
+        end_time: '2018-11-12T17:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T20:00:00Z',
+        end_time: '2018-11-12T23:30:00Z',
+      },
+    ],
   },
   {
-    "id": 14,
-    "name": "Catelyn Stark",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 14,
+    name: 'Daario Naharis',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T11:00:00Z',
+        end_time: '2018-11-12T17:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T20:00:00Z',
+        end_time: '2018-11-12T23:30:00Z',
+      },
+    ],
   },
   {
-    "id": 5,
-    "name": "Daenerys Targaryen",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 15,
+    name: 'Euron Greyjoy',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T11:00:00Z',
+        end_time: '2018-11-12T17:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T20:00:00Z',
+        end_time: '2018-11-12T23:30:00Z',
+      },
+    ],
   },
   {
-    "id": 8,
-    "name": "Edric Storm",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 12,
+    name: 'Jojen Reed',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T07:00:00Z',
+        end_time: '2018-11-12T12:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T13:30:00Z',
+        end_time: '2018-11-12T18:30:00Z',
+      },
+    ],
   },
   {
-    "id": 12,
-    "name": "Kevan Lannister",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 4,
+    name: 'Kevan Lannister',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T15:00:00Z',
+        end_time: '2018-11-12T22:30:00Z',
+      },
+    ],
   },
   {
-    "id": 2,
-    "name": "Lysa Tully",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 8,
+    name: 'Khal Drogo',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T11:00:00Z',
+        end_time: '2018-11-12T17:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T20:00:00Z',
+        end_time: '2018-11-12T23:30:00Z',
+      },
+    ],
   },
   {
-    "id": 7,
-    "name": "Margaery Tyrell",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 9,
+    name: 'Lysa Tully',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T07:00:00Z',
+        end_time: '2018-11-12T12:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T13:30:00Z',
+        end_time: '2018-11-12T18:30:00Z',
+      },
+    ],
   },
   {
-    "id": 15,
-    "name": "Myrcella Baratheon",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 5,
+    name: 'Myrcella Baratheon',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T11:00:00Z',
+        end_time: '2018-11-12T17:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T20:00:00Z',
+        end_time: '2018-11-12T23:30:00Z',
+      },
+    ],
   },
   {
-    "id": 10,
-    "name": "Oberyn Martell",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 10,
+    name: 'Ned Stark',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T07:00:00Z',
+        end_time: '2018-11-12T12:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T13:30:00Z',
+        end_time: '2018-11-12T18:30:00Z',
+      },
+    ],
   },
   {
-    "id": 9,
-    "name": "Petyr Baelish",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 11,
+    name: 'Rickon Stark',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T07:00:00Z',
+        end_time: '2018-11-12T12:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T13:30:00Z',
+        end_time: '2018-11-12T18:30:00Z',
+      },
+    ],
   },
   {
-    "id": 13,
-    "name": "Robb Stark",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 3,
+    name: 'Robb Stark',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T09:00:00Z',
+        end_time: '2018-11-12T17:30:00Z',
+      },
+    ],
   },
   {
-    "id": 3,
-    "name": "Sansa Stark",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 6,
+    name: 'Samwell Tarly',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T07:00:00Z',
+        end_time: '2018-11-12T12:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T13:30:00Z',
+        end_time: '2018-11-12T18:30:00Z',
+      },
+    ],
   },
   {
-    "id": 11,
-    "name": "Viserys Targaryen",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 2,
+    name: 'Stannis Baratheon',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
+        start_time: '2018-11-12T07:00:00Z',
+        end_time: '2018-11-12T12:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T13:30:00Z',
+        end_time: '2018-11-12T18:30:00Z',
+      },
+    ],
   },
   {
-    "id": 4,
-    "name": "Walder Frey",
-    "tasks": [],
-    "type": "Cleaner",
-    "availability": [
+    id: 1,
+    name: 'Viserys Targaryen',
+    tasks: [],
+    availability: [
       {
-        "start_time": "2018-11-12T09:00:00Z",
-        "end_time": "2018-11-12T17:30:00Z"
-      }
-    ]
-  }
-]
+        start_time: '2018-11-12T11:00:00Z',
+        end_time: '2018-11-12T17:30:00Z',
+      },
+      {
+        start_time: '2018-11-12T20:00:00Z',
+        end_time: '2018-11-12T23:30:00Z',
+      },
+    ],
+  },
+];

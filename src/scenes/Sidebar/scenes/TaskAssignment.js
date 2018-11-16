@@ -10,7 +10,7 @@ import { setSidebarView, selectTask } from 'ducks/view/view';
 import { assignTask, unassignTask } from 'ducks/tasks/tasks';
 import { setFocusedTask } from 'ducks/map/map';
 import { SidebarHeading } from 'components/atoms/Typography/Typography';
-import { countOverlappingTasks } from 'utils/calendar';
+import { countOverlappingTasks, createUnavailability } from 'utils/calendar';
 
 const Wrapper = styled.div`
   padding-top: 1rem;
@@ -18,8 +18,13 @@ const Wrapper = styled.div`
 
 const TaskAssignment = ({ setSidebarView, setFocusedTask, task, tasks, providers, selectTask, unassignTask }) => {
   const availableProviders = providers.filter(provider => {
+    const unavailability = createUnavailability({
+      availability: provider.availability,
+      start_time: '2018-11-12T00:00:00Z',
+      end_time: '2018-11-13T00:00:00Z',
+    });
     const providerTasks = provider.tasks.map(id => tasks.get(id).toJS());
-    const providerIsAvailable = countOverlappingTasks(task, provider.availability) > 0;
+    const providerIsAvailable = countOverlappingTasks(task, unavailability) === 0;
     const providerHasNoOverlappingTasks = countOverlappingTasks(task, providerTasks) === 0;
     return providerIsAvailable && providerHasNoOverlappingTasks;
   });
