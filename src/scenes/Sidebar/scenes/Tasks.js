@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import TaskList from '../components/TaskList/TaskList';
-import ArrowButton from 'components/molecules/ArrowButton/ArrowButton';
 import { setSidebarView, selectTask, selectProvider } from 'ducks/view/view';
 import { setFocusedTask } from 'ducks/map/map';
 

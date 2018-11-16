@@ -1,6 +1,4 @@
 import React, { Fragment } from 'react';
-import tasks from 'tasks.js';
-import providers from 'people.js';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -11,8 +9,8 @@ import Warning from 'components/atoms/Warning/Warning';
 import { setSidebarView, selectTask } from 'ducks/view/view';
 import { assignTask, unassignTask } from 'ducks/tasks/tasks';
 import { setFocusedTask } from 'ducks/map/map';
-import { SidebarHeading, Text } from 'components/atoms/Typography/Typography';
-import { createUnavailability, countOverlappingTasks } from 'utils/calendar';
+import { SidebarHeading } from 'components/atoms/Typography/Typography';
+import { countOverlappingTasks } from 'utils/calendar';
 
 const Wrapper = styled.div`
   padding-top: 1rem;
@@ -42,11 +40,11 @@ const TaskAssignment = ({ setSidebarView, setFocusedTask, task, tasks, providers
       {availableProviders.length === 0 ? (
         <Fragment>
           <Warning>No providers are available</Warning>
-          {bestProviders.length > 0 && <ProviderList title="Suggested" providers={bestProviders} />}
+          {bestProviders.length > 0 && <ProviderList title="Best match" providers={bestProviders} />}
         </Fragment>
       ) : (
         <Fragment>
-          {bestProviders.length > 0 && <ProviderList title="Suggested" providers={bestProviders} />}
+          {bestProviders.length > 0 && <ProviderList title="Best match" providers={bestProviders} />}
           <ProviderList title="Available" providers={availableProviders} />
         </Fragment>
       )}

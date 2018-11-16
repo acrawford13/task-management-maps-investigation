@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import ArrowButton from 'components/molecules/ArrowButton/ArrowButton';
 import Tasks from './scenes/Tasks';
 import Providers from './scenes/Providers';
 import ProviderDetail from './scenes/ProviderDetail';
@@ -15,7 +14,6 @@ const Wrapper = styled.div`
   padding: 1rem;
   grid-row: 1;
   grid-column: 2;
-  /* padding-top: 2rem; */
 `;
 
 const SidebarRouter = ({ view }) => {

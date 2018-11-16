@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
 import reducers from 'ducks';
-import rootSaga from 'sagas';
 import createSagaMiddleware from 'redux-saga';
 
 const enhancers = [];
@@ -18,9 +17,10 @@ if (process.env.NODE_ENV === 'development') {
   middleware.push(createLogger());
 }
 
-const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
+const composedEnhancers = compose(
+  applyMiddleware(...middleware),
+  ...enhancers,
+);
 const store = createStore(reducers, {}, composedEnhancers);
-
-sagaMiddleware.run(rootSaga);
 
 export default store;

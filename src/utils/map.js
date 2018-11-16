@@ -422,6 +422,7 @@ export const getMidpoint = route => {
   console.log(routeSteps);
   while (accumulatedStepsDistance < distanceMidpoint) {
     if (route.legs[0].steps[count].steps) {
+      
     }
     accumulatedStepsDistance += route.legs[0].steps[count].distance.value;
     count++;

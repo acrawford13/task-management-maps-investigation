@@ -1,10 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const ArrowSVG = styled.svg`
-  height: 1.5rem;
-  opacity: 0.5;
-`;
 
 const Arrow = ({ className }) => (
   <svg className={className} aria-hidden="true" viewBox="0 0 576 1024">
