@@ -1,3 +1,12 @@
+## Setup
+
+* Install [Node.js](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/lang/en/docs/install)
+* Clone repo
+* Install dependencies with `yarn`
+* Run the app in development mode with `yarn start` (Will run on [http://localhost:3000](http://localhost:3000))
+
+----
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
