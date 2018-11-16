@@ -11,19 +11,18 @@ const Wrapper = styled.div`
   height: 0;
   display: inline-block;
   width: 0;
+  z-index: ${props => (props.selected ? 11 : 5)};
   ${props =>
     props.animate &&
     `
   &:hover {
+    z-index: 12;
     ${MarkerWrapper} {
       opacity: 1;
       z-index: 5;
     }
     ${MapMarkerWrapper}:nth-of-type(1) {
-      transform: translate(${50 * 0}px, 0);
-      > {
-        opacity: 0;
-      }
+      transform: translate(${50 * 0}px, 0);s
     }
     ${MapMarkerWrapper}:nth-of-type(2) {
       transform: translate(${50 * 1}px, 0);
