@@ -6,8 +6,8 @@ import statusData from 'utils/statusData';
 
 export const MarkerPath = styled.path`
   fill: ${props => props.fill};
-  opacity: ${props => props.fade ? 0.6 : 1};
-  transition: opacity 0.4s;
+  opacity: ${props => (props.fade ? 0.6 : 1)};
+  transition: opacity 0.5s;
 `;
 
 const SVG = styled.svg`
@@ -33,7 +33,6 @@ const MarkerShape = styled.div`
   grid-template-rows: 5fr 1fr;
   cursor: pointer;
   position: relative;
-  z-index: ${props => (props.fade ? 0 : 4)};
   pointer-events: all;
 
   &::before {

@@ -17,12 +17,18 @@ const Wrapper = styled(SidebarListItem)`
 const BigTime = styled.span`
   color: ${props => props.theme.palette.text};
   font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
 `;
 
-const TaskListItem = ({ name, start_time, end_time, status, onClick }) => {
+const TaskListItem = ({ name, start_time, end_time, status, onClick, onMouseEnter, onMouseLeave }) => {
   return (
     <Wrapper onClick={onClick}>
-      <BigTime>{moment.utc(start_time).format('HH:mm')}</BigTime>
+      <BigTime>
+        {moment.utc(start_time).format('HH:mm')}
+        {/* <i onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter} className="far fa-eye" /> */}
+      </BigTime>
+
       <TaskDetails name={name} start_time={start_time} end_time={end_time} status={status} />
     </Wrapper>
   );

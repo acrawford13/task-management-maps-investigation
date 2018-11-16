@@ -6,7 +6,6 @@ const Wrapper = styled.span`
   background-color: white;
   padding: 0.5rem 0.75rem;
   border-radius: 0.4rem;
-  color: '#3a4556';
   font-weight: 500;
   z-index: 999;
   position: relative;
@@ -14,6 +13,7 @@ const Wrapper = styled.span`
   color: white;
   font-size: 0.9rem;
   margin: 0.25rem;
+  width: max-content;
 `;
 
 const WarningIcon = styled.span`

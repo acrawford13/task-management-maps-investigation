@@ -20,6 +20,12 @@ class Tasks extends Component {
             this.props.setFocusedTask(task);
             this.props.setSidebarView(task.status === 'assigned' ? 'provider_detail' : 'task_assignment');
           }}
+          onMouseEnterTask={task => {
+            this.props.setFocusedTask(task);
+          }}
+          onMouseLeaveTask={() => {
+            this.props.setFocusedTask(null);
+          }}
           tasks={this.props.tasks}
         />
       </Fragment>
