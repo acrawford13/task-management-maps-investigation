@@ -3,7 +3,17 @@ import people from '../../people.js';
 
 import { ASSIGN_TASK, UNASSIGN_TASK } from '../tasks/tasks';
 
-const initialState = OrderedMap(people.map(value => [value.id, fromJS(value)]));
+const sortByName = (a, b) => {
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (b.name < a.name) {
+    return 1;
+  }
+  return 0;
+};
+
+const initialState = OrderedMap(people.sort(sortByName).map(value => [value.id, fromJS(value)]));
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {

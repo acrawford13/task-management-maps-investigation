@@ -1,7 +1,7 @@
 export default [
   {
     id: 7,
-    name: 'Aemon Targaryen',
+    name: 'Anika Barker',
     tasks: [],
     availability: [
       {
@@ -11,72 +11,12 @@ export default [
       {
         start_time: '2018-11-12T20:00:00Z',
         end_time: '2018-11-12T23:30:00Z',
-      },
-    ],
-  },
-  {
-    id: 13,
-    name: 'Benjen Stark',
-    tasks: [],
-    availability: [
-      {
-        start_time: '2018-11-12T11:00:00Z',
-        end_time: '2018-11-12T17:30:00Z',
-      },
-      {
-        start_time: '2018-11-12T20:00:00Z',
-        end_time: '2018-11-12T23:30:00Z',
-      },
-    ],
-  },
-  {
-    id: 14,
-    name: 'Daario Naharis',
-    tasks: [],
-    availability: [
-      {
-        start_time: '2018-11-12T11:00:00Z',
-        end_time: '2018-11-12T17:30:00Z',
-      },
-      {
-        start_time: '2018-11-12T20:00:00Z',
-        end_time: '2018-11-12T23:30:00Z',
-      },
-    ],
-  },
-  {
-    id: 15,
-    name: 'Euron Greyjoy',
-    tasks: [],
-    availability: [
-      {
-        start_time: '2018-11-12T11:00:00Z',
-        end_time: '2018-11-12T17:30:00Z',
-      },
-      {
-        start_time: '2018-11-12T20:00:00Z',
-        end_time: '2018-11-12T23:30:00Z',
-      },
-    ],
-  },
-  {
-    id: 12,
-    name: 'Jojen Reed',
-    tasks: [],
-    availability: [
-      {
-        start_time: '2018-11-12T07:00:00Z',
-        end_time: '2018-11-12T12:30:00Z',
-      },
-      {
-        start_time: '2018-11-12T13:30:00Z',
-        end_time: '2018-11-12T18:30:00Z',
       },
     ],
   },
   {
     id: 4,
-    name: 'Kevan Lannister',
+    name: 'Alfred Sloan',
     tasks: [],
     availability: [
       {
@@ -87,7 +27,7 @@ export default [
   },
   {
     id: 8,
-    name: 'Khal Drogo',
+    name: 'Oriana Mercer',
     tasks: [],
     availability: [
       {
@@ -102,7 +42,7 @@ export default [
   },
   {
     id: 9,
-    name: 'Lysa Tully',
+    name: 'Cornelia Kipling',
     tasks: [],
     availability: [
       {
@@ -117,7 +57,7 @@ export default [
   },
   {
     id: 5,
-    name: 'Myrcella Baratheon',
+    name: 'Conrad Lewis',
     tasks: [],
     availability: [
       {
@@ -132,22 +72,7 @@ export default [
   },
   {
     id: 10,
-    name: 'Ned Stark',
-    tasks: [],
-    availability: [
-      {
-        start_time: '2018-11-12T07:00:00Z',
-        end_time: '2018-11-12T12:30:00Z',
-      },
-      {
-        start_time: '2018-11-12T13:30:00Z',
-        end_time: '2018-11-12T18:30:00Z',
-      },
-    ],
-  },
-  {
-    id: 11,
-    name: 'Rickon Stark',
+    name: 'Lidia Forst',
     tasks: [],
     availability: [
       {
@@ -162,7 +87,7 @@ export default [
   },
   {
     id: 3,
-    name: 'Robb Stark',
+    name: 'Louise Walton',
     tasks: [],
     availability: [
       {
@@ -173,7 +98,7 @@ export default [
   },
   {
     id: 6,
-    name: 'Samwell Tarly',
+    name: 'Oliver Wescott',
     tasks: [],
     availability: [
       {
@@ -188,7 +113,7 @@ export default [
   },
   {
     id: 2,
-    name: 'Stannis Baratheon',
+    name: 'Susan McInnes',
     tasks: [],
     availability: [
       {
@@ -203,7 +128,7 @@ export default [
   },
   {
     id: 1,
-    name: 'Viserys Targaryen',
+    name: 'Courtney Martin',
     tasks: [],
     availability: [
       {
