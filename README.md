@@ -3,6 +3,7 @@
 * Install [Node.js](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/lang/en/docs/install)
 * Clone repo
 * Install dependencies with `yarn`
+* Create a file `.env.local` in the root directory, and add `REACT_APP_GOOGLE_MAPS_API_KEY=<your api key>`
 * Run the app in development mode with `yarn start` (Will run on [http://localhost:3000](http://localhost:3000))
 
 ----
