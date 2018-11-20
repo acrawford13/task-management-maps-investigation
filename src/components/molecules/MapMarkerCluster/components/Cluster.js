@@ -12,11 +12,13 @@ const Wrapper = styled.div`
   display: inline-block;
   width: 0;
   z-index: ${props => (props.selected ? 11 : 5)};
+  &:hover {
+    z-index: 12;
+  }
   ${props =>
     props.animate &&
     `
   &:hover {
-    z-index: 12;
     ${MarkerWrapper} {
       opacity: 1;
       z-index: 5;
