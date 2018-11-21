@@ -111,8 +111,9 @@ class Map extends Component {
       >
       
       
-        {this.props.tasks.toList().groupBy(task => task.get('location')).toList().toJS().map(locationGroup => (
+        {this.props.tasks.toList().groupBy(task => task.get('location')).toList().toJS().map((locationGroup, index) => (
           <MapMarkerCluster
+            key={index}
             markers={locationGroup.map(task => ({
               task,
               selected: this.markerIsSelected(task),
