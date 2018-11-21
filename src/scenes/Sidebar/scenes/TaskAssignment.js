@@ -12,12 +12,8 @@ import { setFocusedTask } from 'ducks/map/map';
 import { SidebarHeading } from 'components/atoms/Typography/Typography';
 import { countOverlappingTasks, createUnavailability } from 'utils/calendar';
 
-const Wrapper = styled.div`
-  padding-top: 1rem;
-`;
-
-const TaskAssignment = ({ setSidebarView, setFocusedTask, task, tasks, providers, selectTask, unassignTask }) => {
-  const availableProviders = providers.filter(provider => {
+const categoriseProviders = ({ providers, available, notAvailable, tasks, task }) => {
+  providers.forEach(provider => {
     const unavailability = createUnavailability({
       availability: provider.availability,
       start_time: '2018-11-12T00:00:00Z',
@@ -26,14 +22,29 @@ const TaskAssignment = ({ setSidebarView, setFocusedTask, task, tasks, providers
     const providerTasks = provider.tasks.map(id => tasks.get(id).toJS());
     const providerIsAvailable = countOverlappingTasks(task, unavailability) === 0;
     const providerHasNoOverlappingTasks = countOverlappingTasks(task, providerTasks) === 0;
-    return providerIsAvailable && providerHasNoOverlappingTasks;
+    if (providerIsAvailable && providerHasNoOverlappingTasks) {
+      available.push(provider);
+    } else {
+      notAvailable.push(provider);
+    }
   });
+};
 
-  const bestProvidersBuffer = [
-    ...((availableProviders.length > 0 && availableProviders) || (providers.length > 0 && providers)),
+const Wrapper = styled.div`
+  padding-top: 1rem;
+`;
+
+const TaskAssignment = ({ setSidebarView, setFocusedTask, task, tasks, providers, selectTask, unassignTask }) => {
+  const availableProviders = [];
+  const unavailableProviders = [];
+
+  categoriseProviders({ providers, tasks, task, available: availableProviders, notAvailable: unavailableProviders });
+
+  const bestProviders = [
+    (availableProviders.length ? availableProviders : unavailableProviders)
+      .sort((a, b) => a.tasks.length - b.tasks.length)
+      .shift(),
   ];
-
-  const bestProviders = [bestProvidersBuffer.sort((a, b) => a.tasks.length - b.tasks.length)[0]];
 
   return (
     <Wrapper>
@@ -53,7 +64,7 @@ const TaskAssignment = ({ setSidebarView, setFocusedTask, task, tasks, providers
           <ProviderList title="Available" providers={availableProviders} />
         </Fragment>
       )}
-      <ProviderList title="All providers" providers={providers} />
+      <ProviderList title="Unavailable" providers={unavailableProviders} />
       <ArrowButton
         onClick={() => {
           selectTask(null);
