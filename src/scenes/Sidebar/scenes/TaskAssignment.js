@@ -11,6 +11,7 @@ import { assignTask, unassignTask } from 'ducks/tasks/tasks';
 import { setFocusedTask } from 'ducks/map/map';
 import { SidebarHeading } from 'components/atoms/Typography/Typography';
 import { countOverlappingTasks, createUnavailability } from 'utils/calendar';
+import { sortByName } from 'utils/sorting';
 
 const categoriseProviders = ({ providers, available, notAvailable, tasks, task }) => {
   providers.forEach(provider => {
@@ -56,15 +57,15 @@ const TaskAssignment = ({ setSidebarView, setFocusedTask, task, tasks, providers
       {availableProviders.length === 0 ? (
         <Fragment>
           <Warning>No providers are available</Warning>
-          {bestProviders.length > 0 && <ProviderList title="Best match" providers={bestProviders} />}
+          {bestProviders.length > 0 && <ProviderList title="Best match" providers={bestProviders.sort(sortByName)} />}
         </Fragment>
       ) : (
         <Fragment>
-          {bestProviders.length > 0 && <ProviderList title="Best match" providers={bestProviders} />}
-          <ProviderList title="Available" providers={availableProviders} />
+          {bestProviders.length > 0 && <ProviderList title="Best match" providers={bestProviders.sort(sortByName)} />}
+          <ProviderList title="Available" providers={availableProviders.sort(sortByName)} />
         </Fragment>
       )}
-      <ProviderList title="Unavailable" providers={unavailableProviders} />
+      {unavailableProviders.length > 0 && <ProviderList title="Unavailable" providers={unavailableProviders.sort(sortByName)} />}
       <ArrowButton
         onClick={() => {
           selectTask(null);
