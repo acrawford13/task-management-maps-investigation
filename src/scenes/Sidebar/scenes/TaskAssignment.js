@@ -41,11 +41,11 @@ const TaskAssignment = ({ setSidebarView, setFocusedTask, task, tasks, providers
 
   categoriseProviders({ providers, tasks, task, available: availableProviders, notAvailable: unavailableProviders });
 
-  const bestProviders = [
-    (availableProviders.length ? availableProviders : unavailableProviders)
-      .sort((a, b) => a.tasks.length - b.tasks.length)
-      .shift(),
-  ];
+  // const bestProviders = [
+  //   (availableProviders.length ? availableProviders : unavailableProviders)
+  //     .sort((a, b) => a.tasks.length - b.tasks.length)
+  //     .shift(),
+  // ];
 
   return (
     <Wrapper>
@@ -57,15 +57,17 @@ const TaskAssignment = ({ setSidebarView, setFocusedTask, task, tasks, providers
       {availableProviders.length === 0 ? (
         <Fragment>
           <Warning>No providers are available</Warning>
-          {bestProviders.length > 0 && <ProviderList title="Best match" providers={bestProviders.sort(sortByName)} />}
+          {/* {bestProviders.length > 0 && <ProviderList title="Best match" providers={bestProviders.sort(sortByName)} />} */}
         </Fragment>
       ) : (
         <Fragment>
-          {bestProviders.length > 0 && <ProviderList title="Best match" providers={bestProviders.sort(sortByName)} />}
+          {/* {bestProviders.length > 0 && <ProviderList title="Best match" providers={bestProviders.sort(sortByName)} />} */}
           <ProviderList title="Available" providers={availableProviders.sort(sortByName)} />
         </Fragment>
       )}
-      {unavailableProviders.length > 0 && <ProviderList title="Unavailable" providers={unavailableProviders.sort(sortByName)} />}
+      {unavailableProviders.length > 0 && (
+        <ProviderList title="Unavailable" providers={unavailableProviders.sort(sortByName)} />
+      )}
       <ArrowButton
         onClick={() => {
           selectTask(null);
