@@ -6,6 +6,7 @@ import { compose, withProps } from 'recompose';
 import mapStyles from './mapStyles';
 import { MAP } from 'react-google-maps/lib/constants';
 
+import { getDataset } from 'utils/datasets';
 import tasks from 'tasks.js';
 import people from 'people.js';
 import { findClosestProvider } from 'ducks/tasks/tasks';
@@ -105,7 +106,7 @@ class Map extends Component {
       <GoogleMap
         ref={this.setRef}
         defaultZoom={13}
-        defaultCenter={{ lat: 51.50852, lng: -0.116787 }}
+        defaultCenter={getDataset().center}
         onCenterChanged={this.onCenterChanged}
         options={mapOptions}
       >

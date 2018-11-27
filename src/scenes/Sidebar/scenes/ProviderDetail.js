@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment-timezone';
 
+import { getDataset } from 'utils/datasets';
 import SelectedTaskDetail from 'components/molecules/SelectedTaskDetail/SelectedTaskDetail';
 import ArrowButton from 'components/molecules/ArrowButton/ArrowButton';
 import { setSidebarView, selectTask, selectProvider, addNotification, clearNotifications } from 'ducks/view/view';
@@ -16,6 +17,8 @@ import travelData from 'travelData.js';
 const Wrapper = styled.div`
   padding-top: 1rem;
 `;
+
+const dataset = getDataset();
 
 class ProviderPanel extends Component {
 
@@ -42,7 +45,7 @@ class ProviderPanel extends Component {
         if(index !== 0) {
           const from = displayTasks[index - 1]
           const to = displayTasks[index];
-          const route = travelData[from.id][to.id];
+          const route = travelData[dataset.name][from.id][to.id];
           paths.push({
             route,
             from,

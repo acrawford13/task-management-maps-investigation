@@ -32,7 +32,7 @@ const TimeContainer = styled.div`
   border-top: 1px
     ${props => (props.border === 1 ? 'dashed rgba(0, 0, 0, 0.2)' : props.border === 0 && 'solid rgba(0, 0, 0, 0.4)')};
   grid-column: 2 / -1;
-  min-height: ${props => 50 / (60 / props.timeIntervals)}px;
+  min-height: ${props => 45 / (60 / props.timeIntervals)}px;
   grid-row: ${props => props.index + 1};
 `;
 
