@@ -21,6 +21,6 @@ const getInitials = fullName => {
     .join('');
 };
 
-const Avatar = ({ name, className }) => <Wrapper className={className}>{getInitials(name)}</Wrapper>;
+const Avatar = ({ name, initials, className }) => <Wrapper className={className}>{initials || getInitials(name)}</Wrapper>;
 
 export default Avatar;

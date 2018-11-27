@@ -6,8 +6,10 @@ export const SELECT_TASK = 'SELECT_TASK';
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
 export const CLEAR_NOTIFICATIONS = 'CLEAR_NOTIFICATIONS';
+export const SET_LOCATION = 'SET_LOCATION';
 
 const initialState = Map({
+  location: null,
   sidebar_view: 'tasks',
   selected_task: null,
   selected_provider: null,
@@ -31,6 +33,8 @@ export default function reducer(state = initialState, action = {}) {
         .setIn(['selected_provider'], action.payload.task ? action.payload.task.assigned_provider : null);
     case SELECT_PROVIDER:
       return state.setIn(['selected_provider'], action.payload.providerID);
+    case SET_LOCATION:
+      return state.set('location', action.payload.location);
     default:
       return state;
   }
@@ -67,6 +71,13 @@ export function setSidebarView(view) {
   return {
     type: SET_SIDEBAR_VIEW,
     payload: { view },
+  };
+}
+
+export function setLocation(location) {
+  return {
+    type: SET_LOCATION,
+    payload: { location },
   };
 }
 

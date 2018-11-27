@@ -1,9 +1,12 @@
 import { fromJS, Map } from 'immutable';
 import people from '../../people.js';
+import { getDataset } from 'utils/datasets';
 
 import { ASSIGN_TASK, UNASSIGN_TASK } from '../tasks/tasks';
 
-const initialState = Map(people.map(value => [value.id, fromJS(value)]));
+const dataset = getDataset();
+
+const initialState = Map(people[dataset.name].map(value => [value.id, fromJS(value)]));
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {

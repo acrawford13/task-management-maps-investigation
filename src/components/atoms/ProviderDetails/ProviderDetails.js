@@ -21,10 +21,10 @@ const Name = styled(Bold)`
   font-size: 1.1rem;
 `;
 
-const ProviderDetails = ({ tasks, name }) => {
+const ProviderDetails = ({ tasks, name, initials }) => {
   return (
     <Fragment>
-      <StyledAvatar name={name} />
+      <StyledAvatar initials={initials} name={name} />
       <div>
         <Name>{name}</Name>
         <TaskDetailsWrapper>

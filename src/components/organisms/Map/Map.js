@@ -105,7 +105,7 @@ class Map extends Component {
       <GoogleMap
         ref={this.setRef}
         defaultZoom={13}
-        defaultCenter={{ lat: 51.508520, lng: -0.116787 }}
+        defaultCenter={{ lat: 51.50852, lng: -0.116787 }}
         onCenterChanged={this.onCenterChanged}
         options={mapOptions}
       >

@@ -24,10 +24,10 @@ const StyledArrow = styled(Arrow)`
   opacity: 0.4;
 `;
 
-const ProviderListItem = ({ name, tasks, onClick }) => {
+const ProviderListItem = ({ name, tasks, initials, onClick }) => {
   return (
     <Wrapper onClick={onClick}>
-      <ProviderDetails tasks={tasks} name={name} />
+      <ProviderDetails tasks={tasks} initials={initials} name={name} />
       <ArrowWrapper>
         <StyledArrow />
       </ArrowWrapper>

@@ -13,7 +13,6 @@ import ProviderDetail from '../components/ProviderDetail/ProviderDetail';
 import { createUnavailability, countOverlappingTasks, timeSort } from 'utils/calendar';
 import travelData from 'travelData.js';
 
-
 const Wrapper = styled.div`
   padding-top: 1rem;
 `;
@@ -63,7 +62,7 @@ class ProviderPanel extends Component {
 
     const providerUnavailabilility = createUnavailability({
       availability: this.props.provider.availability,
-      start_time: '2018-11-12T07:00:00Z',
+      start_time: '2018-11-12T00:00:00Z',
       end_time: '2018-11-13T00:00:00Z',
     });
     const providerIsUnavailable = countOverlappingTasks(this.props.task, providerUnavailabilility);

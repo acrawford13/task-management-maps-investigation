@@ -21,7 +21,7 @@ export const countOverlappingTasks = (task, existingTasks) => {
 
 export const createUnavailability = ({
   availability,
-  start_time = '2018-11-12T07:00:00Z',
+  start_time = '2018-11-12T00:00:00Z',
   end_time = '2018-11-13T00:00:00Z',
 }) => {
   const tempAvailability = [...availability];
