@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { getDataset } from 'utils/datasets';
 import SidebarListItem from 'components/atoms/SidebarListItem/SidebarListItem';
 import ProviderDetails from 'components/atoms/ProviderDetails/ProviderDetails';
 import Button from 'components/atoms/Button/Button';
@@ -18,6 +19,10 @@ const ProviderDetailsWrapper = styled(SidebarListItem)`
   cursor: pointer;
   border-bottom: none;
 `;
+
+const dataset = getDataset();
+
+console.log(dataset);
 
 const ProviderDetail = ({ provider, task, tasks, assignTask, unassignTask, selectTask, setSidebarView }) => {
   // const taskIsUnassigned = provider.tasks.indexOf(task.id) === -1;
@@ -45,8 +50,8 @@ const ProviderDetail = ({ provider, task, tasks, assignTask, unassignTask, selec
         events={taskEvents}
         availability={provider.availability}
         unavailability={provider.unavailability}
-        start_time="2018-11-12T00:00:00Z"
-        end_time="2018-11-13T00:00:00Z"
+        start_time={dataset.start_time}
+        end_time={dataset.end_time}
         handleEventClick={selectTask}
         timeIntervals={5}
       />

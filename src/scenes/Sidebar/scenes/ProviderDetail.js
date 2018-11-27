@@ -65,8 +65,8 @@ class ProviderPanel extends Component {
 
     const providerUnavailabilility = createUnavailability({
       availability: this.props.provider.availability,
-      start_time: '2018-11-12T00:00:00Z',
-      end_time: '2018-11-13T00:00:00Z',
+      start_time: dataset.start_time,
+      end_time: dataset.end_time,
     });
     const providerIsUnavailable = countOverlappingTasks(this.props.task, providerUnavailabilility);
     const numberOfOverlaps = countOverlappingTasks(this.props.task, this.props.providerTasks);

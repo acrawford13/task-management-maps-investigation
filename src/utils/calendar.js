@@ -1,4 +1,7 @@
 import moment from 'moment-timezone';
+import { getDataset } from 'utils/datasets';
+
+const dataset = getDataset();
 
 export const taskOverlaps = (taskA, taskB) => {
   const taskAStart = moment.utc(taskA.start_time);
@@ -21,8 +24,8 @@ export const countOverlappingTasks = (task, existingTasks) => {
 
 export const createUnavailability = ({
   availability,
-  start_time = '2018-11-12T00:00:00Z',
-  end_time = '2018-11-13T00:00:00Z',
+  start_time = dataset.start_time,
+  end_time = dataset.end_time,
 }) => {
   const tempAvailability = [...availability];
   if (availability.length === 0) {

@@ -12,13 +12,16 @@ import { setFocusedTask } from 'ducks/map/map';
 import { SidebarHeading } from 'components/atoms/Typography/Typography';
 import { countOverlappingTasks, createUnavailability } from 'utils/calendar';
 import { sortByName } from 'utils/sorting';
+import { getDataset } from 'utils/datasets';
+
+const dataset = getDataset();
 
 const categoriseProviders = ({ providers, available, notAvailable, tasks, task }) => {
   providers.forEach(provider => {
     const unavailability = createUnavailability({
       availability: provider.availability,
-      start_time: '2018-11-12T00:00:00Z',
-      end_time: '2018-11-13T00:00:00Z',
+      start_time: dataset.start_time,
+      end_time: dataset.end_time,
     });
     const providerTasks = provider.tasks.map(id => tasks.get(id).toJS());
     const providerIsAvailable = countOverlappingTasks(task, unavailability) === 0;
