@@ -13,7 +13,21 @@ const StyledStatusLabel = styled(StatusLabel)`
   margin-top: 0.25rem;
 `;
 
-const TaskDetails = ({ start_time, end_time, name, status }) => (
+const Details = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 1rem;
+`;
+
+const MapPreviewIcon = styled.i`
+  color: grey;
+  margin-bottom: 2px;
+  font-size: 1.25rem;
+`
+
+const TaskDetails = ({ start_time, end_time, name, status, onMouseEnter, onMouseLeave }) => (
   <div>
     <Text>
       <strong>
@@ -22,7 +36,10 @@ const TaskDetails = ({ start_time, end_time, name, status }) => (
       <br />
       <span>{name}</span>
     </Text>
-    <StyledStatusLabel status={status} />
+    <Details>
+      <StyledStatusLabel status={status} />
+      {onMouseEnter && <MapPreviewIcon onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter} className="fas fa-map-marker-alt" />}
+    </Details>
   </div>
 );
 
