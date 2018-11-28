@@ -226,7 +226,7 @@ export default {
     },
   ],
   friday: [
-    {
+    // {
     //   id: 1,
     //   name: 'Porchester Sq',
     //   status: 'not_assigned',
