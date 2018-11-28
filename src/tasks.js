@@ -267,7 +267,7 @@ export default {
     },
     {
       id: 4,
-      name: 'Arthur',
+      name: '1200 bag drop at Arthur',
       status: 'not_assigned',
       assigned_provider: null,
       type: 'check_in',
@@ -275,8 +275,8 @@ export default {
         lat: 51.5165393,
         lng: -0.189208,
       },
-      start_time: '2018-11-30T00:00:00.000Z',
-      end_time: '2018-11-30T01:00:00.000Z',
+      start_time: '2018-11-30T11:30:00.000Z',
+      end_time: '2018-11-30T12:30:00.000Z',
     },
     {
       id: 5,
@@ -332,7 +332,7 @@ export default {
     },
     {
       id: 9,
-      name: 'Renshaw',
+      name: '1700 Greet at Renshaw',
       status: 'not_assigned',
       assigned_provider: null,
       type: 'check_in',
@@ -340,8 +340,8 @@ export default {
         lat: 51.430098,
         lng: -0.2123493,
       },
-      start_time: '2018-11-30T00:00:00.000Z',
-      end_time: '2018-11-30T01:00:00.000Z',
+      start_time: '2018-11-30T16:30:00.000Z',
+      end_time: '2018-11-30T17:30:00.000Z',
     },
     {
       id: 10,
