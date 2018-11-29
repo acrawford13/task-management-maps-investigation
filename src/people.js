@@ -421,4 +421,83 @@ export default {
       ],
     },
   ],
+  cleaning: [
+    {
+      id: 1,
+      name: 'Diana',
+      tasks: [],
+      availability: [
+        {
+          start_time: '2018-12-01T07:00:00Z',
+          end_time: '2018-12-01T19:00:00Z',
+        },
+      ],
+    },
+    {
+      id: 2,
+      name: 'Kitty',
+      tasks: [],
+      availability: [
+        {
+          start_time: '2018-12-01T07:00:00Z',
+          end_time: '2018-12-01T19:00:00Z',
+        },
+      ],
+    },
+    {
+      id: 3,
+      name: 'Lyubka',
+      tasks: [],
+      availability: [
+        {
+          start_time: '2018-12-01T07:00:00Z',
+          end_time: '2018-12-01T19:00:00Z',
+        },
+      ],
+    },
+    {
+      id: 4,
+      name: 'Maria',
+      tasks: [],
+      availability: [
+        {
+          start_time: '2018-12-01T07:00:00Z',
+          end_time: '2018-12-01T19:00:00Z',
+        },
+      ],
+    },
+    {
+      id: 5,
+      name: 'Raluca',
+      tasks: [],
+      availability: [
+        {
+          start_time: '2018-12-01T07:00:00Z',
+          end_time: '2018-12-01T19:00:00Z',
+        },
+      ],
+    },
+    {
+      id: 6,
+      name: 'Salvatore',
+      tasks: [],
+      availability: [
+        {
+          start_time: '2018-12-01T07:00:00Z',
+          end_time: '2018-12-01T19:00:00Z',
+        },
+      ],
+    },
+    {
+      id: 7,
+      name: 'Ivanka',
+      tasks: [],
+      availability: [
+        {
+          start_time: '2018-12-01T07:00:00Z',
+          end_time: '2018-12-01T19:00:00Z',
+        },
+      ],
+    },
+  ],
 };

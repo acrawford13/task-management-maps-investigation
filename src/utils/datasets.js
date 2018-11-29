@@ -17,7 +17,13 @@ export const getDataset = () => {
       start_time: '2018-11-01T07:00:00Z',
       end_time: '2018-11-02T07:00:00Z',
       center: { lat: 48.86251, lng: 2.337882 },
-    }
+    },
+    cleaning: {
+      name: 'cleaning',
+      start_time: '2018-12-01T07:00:00Z',
+      end_time: '2018-12-02T07:00:00Z',
+      center: { lat: 51.515514, lng: -0.150716 },
+    },
   };
 
   return DATASETS[window.location.pathname.replace(/\//, '')] || DATASETS.friday;
