@@ -1,0 +1,26 @@
+{
+  "name": "task-mgmt-maps-investigation",
+  "scripts": {
+  },
+  "env": {
+    "REACT_APP_GOOGLE_MAPS_API_KEY": {
+      "required": true
+    },
+    "REACT_APP_HOST_ENV": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
