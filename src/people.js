@@ -353,11 +353,7 @@ export default {
       availability: [
         {
           start_time: '2018-11-01T07:00:00Z',
-          end_time: '2018-11-01T09:00:00Z',
-        },
-        {
-          start_time: '2018-11-01T22:00:00Z',
-          end_time: '2018-11-02T01:00:00Z',
+          end_time: '2018-11-01T19:00:00Z',
         },
       ],
     },
