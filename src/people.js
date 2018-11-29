@@ -323,15 +323,21 @@ export default {
   ],
   paris: [
     {
-      id: 7,
-      name: 'Osama',
+      id: 1,
+      name: 'GUILLAUME christ',
+      initials: 'GC',
       tasks: [],
-      availability: [],
+      availability: [
+        {
+          start_time: '2018-11-01T07:00:00Z',
+          end_time: '2018-11-01T15:00:00Z',
+        },
+      ],
     },
     {
-      id: 4,
-      name: 'Noman ALL',
-      initials: 'N',
+      id: 2,
+      name: 'Shaun William Owen',
+      initials: 'SO',
       tasks: [],
       availability: [
         {
@@ -341,8 +347,8 @@ export default {
       ],
     },
     {
-      id: 10,
-      name: 'Jordan Clarke',
+      id: 3,
+      name: 'Georgette Toporas',
       tasks: [],
       availability: [
         {
@@ -356,20 +362,19 @@ export default {
       ],
     },
     {
-      id: 8,
-      name: 'Erika Reikki',
+      id: 4,
+      name: 'Gary Salinie',
       tasks: [],
       availability: [
         {
           start_time: '2018-11-01T07:00:00Z',
-          end_time: '2018-11-01T15:00:00Z',
+          end_time: '2018-11-01T21:00:00Z',
         },
       ],
     },
     {
-      id: 9,
-      name: 'HugoG. Sw-w',
-      initials: 'HG',
+      id: 5,
+      name: 'Natalia SZYMANEK',
       tasks: [],
       availability: [
         {
@@ -387,9 +392,8 @@ export default {
       ],
     },
     {
-      id: 5,
-      name: 'Paul (All)',
-      initials: 'P',
+      id: 6,
+      name: 'Clotilde Bouillot',
       tasks: [],
       availability: [
         {
@@ -399,9 +403,8 @@ export default {
       ],
     },
     {
-      id: 3,
-      name: 'Anna K-all Zone 1, E,SE',
-      initials: 'AK',
+      id: 7,
+      name: 'Céline Basse',
       tasks: [],
       availability: [
         {
@@ -411,79 +414,15 @@ export default {
       ],
     },
     {
-      id: 6,
-      name: 'Martina Borriero',
-      initials: 'MB',
+      id: 8,
+      name: 'Elea Melchior',
       tasks: [],
       availability: [
         {
-          start_time: '2018-11-01T19:00:00Z',
+          start_time: '2018-11-01T08:00:00Z',
           end_time: '2018-11-01T22:00:00Z',
         },
       ],
-    },
-    {
-      id: 2,
-      name: 'Evelina N.- SE-East-Central',
-      initials: 'EN',
-      tasks: [],
-      availability: [
-        {
-          start_time: '2018-11-01T12:00:00Z',
-          end_time: '2018-11-01T15:00:00Z',
-        },
-      ],
-    },
-    {
-      id: 1,
-      name: 'Jess Curtis- W/C/(E1)',
-      initials: 'JC',
-      tasks: [],
-      availability: [
-        {
-          start_time: '2018-11-01T07:00:00Z',
-          end_time: '2018-11-01T15:00:00Z',
-        },
-      ],
-    },
-    {
-      id: 11,
-      name: 'Stephan Bernard',
-      tasks: [],
-      availability: [],
-    },
-    {
-      id: 12,
-      name: 'Gerda- Zone 1, E, N, SE',
-      initials: 'G',
-      tasks: [],
-      availability: [],
-    },
-    {
-      id: 13,
-      name: 'John GR',
-      initials: 'J',
-      tasks: [],
-      availability: [],
-    },
-    {
-      id: 14,
-      name: 'Sham GR - All',
-      initials: 'S',
-      tasks: [],
-      availability: [
-        {
-          start_time: '2018-11-01T09:00:00Z',
-          end_time: '2018-11-01T12:00:00Z',
-        },
-      ],
-    },
-    {
-      id: 15,
-      name: 'Frankie - All',
-      initials: 'F',
-      tasks: [],
-      availability: [],
     },
   ],
 };
