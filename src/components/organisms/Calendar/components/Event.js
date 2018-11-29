@@ -28,8 +28,8 @@ const Event = ({ calendar_start_time, name, start_time, end_time, timeFormat, as
     <Wrapper
       onClick={assigning ? null : onClick}
       assigning={assigning}
-      rowSpan={duration / timeIntervals}
-      rowOffset={offset / timeIntervals + 1}
+      rowSpan={Math.round(duration / timeIntervals)}
+      rowOffset={Math.round(offset / timeIntervals + 1)}
     >
       <Time>
         {start.format(timeFormat)} - {end.format(timeFormat)}
