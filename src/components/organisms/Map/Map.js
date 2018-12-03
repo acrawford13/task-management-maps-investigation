@@ -44,7 +44,8 @@ const Polyline = ({ route, type, warning }) => {
 }
 
 const mapOptions = {
-  styles: mapStyles
+  styles: mapStyles,
+  gestureHandling: "greedy",
 }
 
 class Map extends Component {
